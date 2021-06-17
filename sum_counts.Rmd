@@ -1,0 +1,91 @@
+---
+title: "Available data"
+description: |
+  Overview the collected data across languages and laboratory settings.
+#theme: theme.css
+#date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    tpc_float: false
+---
+
+```{r setup, include=FALSE,  code = readLines("init.R"), cache=TRUE, cache.path="./catch/"}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### in site data
+
+Between September 2019 and March 2020, the data were collected from the registered teams' affiliations. All the teams followed the [data collection protocol](https://osf.io/xrg84/). This data collection suspended at March 2020 because of the global pandemic outbreak. 
+
+```{r count_site, echo=FALSE, message=FALSE, warning=FALSE}
+sum_site <- (SP_V_subj_site %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(SP_N = n()/2)) %>%
+left_join(  
+(PP_subj_site %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language","PSA_ID")
+) 
+
+sum_site %>%
+  rmarkdown::paged_table(options = list(rows.print = 10))
+#  flextable() %>%
+#  set_header_labels(PSA_ID="Lab ID", SP_N = "SP N", PP_N = "PP N") %>%
+#  autofit()
+```
+
+
+`r dim(subset(sum_site, SP_N >= 50))[1]` teams completed the data collection or reached the minimal sample size before the global pandemic outbreak. Across the site data, `r sum(sum_site$SP_N)` participants finished sentence-picture verification task; `r sum(sum_site$PP_N)` participants finished picture-picture verification task. Some PP data files were successfully imported after I decreased the criterion of file size. `r sum(sum_site$SP_N) - sum(sum_site$PP_N)` participants' data files were lost because the experimenters did not upload the files or submitted the wrong files.
+
+### osweb data
+
+Between January 2021 and June 2021, the data collection resumed after we migrated the in-site scripts to [JATOS](https://www.jatos.org/) website. The rest of teams distributed the corresponding links to their participants. 
+
+```{r count_jatos, echo=FALSE, message=FALSE, warning=FALSE}
+sum_osweb <- (SP_V_subj_osweb %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(SP_N = n()/2)) %>%
+left_join(  
+(PP_subj_osweb %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language","PSA_ID")
+) 
+
+sum_osweb %>%
+  rmarkdown::paged_table(options = list(rows.print = 10))
+#  flextable() %>%
+#  set_header_labels(PSA_ID="Lab ID", SP_N = "SP N", PP_N = "PP N") %>%
+#  autofit()
+```
+
+
+The osweb teams collected the data from the languages as following: `r unique(sum_osweb$Language)`. Across the osweb data, `r sum(sum_osweb$SP_N)` participants finished sentence-picture verification task; `r sum(sum_osweb$PP_N)` participants finished picture-picture verification task.
+
+According to our preregistered plan, each laboratory has to collect at least 50 participants. Some laboratories did not reach the minimal criterion because of the following reasons: (1)their works were interrupted by the pandemic situation; (2)the participants performed worse through the online study; (3) the laboratories allocated the seats for the foreign participants; (4) A language (e.g., Serbian) has a various of scripts.
+
+### All data
+
+```{r count_all, echo=FALSE, message=FALSE, warning=FALSE}
+sum_all <- (bind_rows(SP_V_subj_site,SP_V_subj_osweb) %>% 
+  group_by(Language) %>%
+  summarise(LAB_N = n_distinct(PSA_ID), SP_N = n()/2)) %>%
+left_join(  
+(bind_rows(PP_subj_site,PP_subj_osweb) %>% 
+  group_by(Language) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language")
+) 
+
+sum_all %>%
+  rmarkdown::paged_table(options = list(rows.print = 10))
+#  flextable() %>%
+#  set_header_labels(LAB_N = "Total Labs", SP_N = "SP N", PP_N = "PP N") %>%
+#  autofit()
+```
+
+
+At the end of data collection, `r sum(sum_all$LAB_N)` laboratories participated in this project. `r sum(sum_site$SP_N <50)` laboratories collected the minimal samples. Finally we collected the data from `r length(unique(sum_all$Language))` languages.

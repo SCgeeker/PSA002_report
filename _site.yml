@@ -1,0 +1,67 @@
+name: "Web_report_distill"
+title: "Orientnation Effects: Global investigations"
+description: |
+  PSA 002 Open report: "Investigating Object Orientation Effects Across 19 Languages"
+theme: theme.css
+output_dir: "docs"
+include: ["init.R"]
+base_url: https://SCgeeker.github.io/PSA002_report/
+repository_url: https://github.com/SCgeeker/PSA002_report
+creative_commons: CC BY
+navbar:
+  search: false
+  right:
+#    - text: "Home"
+#      href: index.html
+    - text: "About"
+      menu:
+        - text: "Orientation Effects"
+          href: about.html
+        - text: "Plan"
+          href: prereg.html
+    - text: "Dataset"
+      menu:
+        - text: "Codebook"
+          href: sum_codebook.html
+        - text: "Available Data"
+          href: sum_counts.html
+        - text: "---"
+        - text: "Translation"
+          href: sum_translate.html
+    - text: "Reproducible Protocol"
+      menu:
+        - text: "Instruction"
+          href: method_ins.html
+        - text: "Apps"
+          href: method_apps.html
+        - text: "Materials"
+          href: method_materials.html
+        - text: "Deploy"
+          href: method_deploy.html
+    - text: "Replication Plan"
+      menu:
+        - text: "Instruction"
+          href: plan_ins.html
+        - text: "Parameters"
+          href: plan_parameters.html
+        - text: "Simulation"
+          href: plan_simulation.html
+        - text: "---"
+        - text: "Scenario: studied language"
+          href:
+        - text: "Scenario: yet-studied language"
+          href:
+    - text: "Posts"
+      href: posts.html
+#   - text: "Reference"
+#      href: reference.html
+collections:
+  posts:
+    categories: false
+    categories_metadata: false
+    authors_metadata: false
+    feed_iems_max: 20 # default
+output: 
+  distill::distill_article:
+    includes:
+      in_header: includes/utterances.html

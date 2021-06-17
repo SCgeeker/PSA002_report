@@ -1,0 +1,23 @@
+---
+title: "Orientnation Effects: Global investigations"
+description: |
+ PSA 002 meta: Investigating Object Orientation Effects beyond 19 Languages.
+date: "`r Sys.Date()`"
+author:
+  - name: Sau-Chin Chen 
+    url: https://scchen.com
+    affiliation: Tzu-Chi University, Taiwan
+    orcid_id: 0000-0001-6092-6049
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+**Note** The data collection was finished at June 16, 2021. This website is going to be updated with the data analysis and the writings on the report. 
+
+```{r global, echo=FALSE, message=FALSE, warning=FALSE, fig.cap=""}
+knitr::include_graphics("./includes/fig/map.png")
+```

@@ -1,0 +1,25 @@
+---
+title: "Beyond Replications"
+description: |
+#date: "`r Sys.Date()`"
+#theme: theme.css
+site: 
+  distill::distill_article: 
+    toc: true
+    toc_depth: 3
+    tpc_float: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+The studies piror to
+
+
+## Simulation-based power analysis
+
+[`mixedpower`](https://lkumle.github.io/power_notebooks/)
+
+## Scenarios 
+

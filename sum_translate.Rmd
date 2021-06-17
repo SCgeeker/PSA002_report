@@ -1,0 +1,17 @@
+---
+title: "Translation protocol"
+description: |
+  Overview the collected data across languages and laboratory settings.
+#theme: theme.css
+#date: "`r Sys.Date()`"
+bibliography:  "./includes/bib/Orientation Cross Languages.bib"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+The original materials are from the original studies on the orientation effects [@stanfield_effect_2001; @ZwaanRevisitingMentalSimulation2012]. In addition to the teams recruited the American participants, the other teams had to translated the original materials to the local languages. Translators conducted the translated materials in terms of [the PSA protocol](https://psysciacc.org/translation-process/).
+
+If you will conduct the translations, you can download the [translation template](https://osf.io/gq7xd/) for your work. The target pictures are available at [here](https://osf.io/dwnb4/).

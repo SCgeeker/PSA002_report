@@ -1,0 +1,20 @@
+---
+title: "Meta Project of Orientation Effects"
+description: |
+  We are collecting the ideas to replicate and explore the orientation effects.
+author:
+  - name: Sau-Chin Chen
+    url: https://scchen.com
+date: 06-17-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+As one kind of simulation effects (citation), orientation effects are suggested as the probe to investigate how human minds simulate the objects in the processing of language comprehension.
+

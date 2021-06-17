@@ -1,0 +1,32 @@
+---
+title: "Delopy the on line experiment"
+description: |
+  Run experiment on the desktop computers.
+#date: "`r Sys.Date()`"
+#theme: theme.css
+site: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Test the OSWeb 
+
+Before you submit the script to the JATOS server such as [MindeProbe](https://www.mindprobe.eu/), you must test the script as [this instruction](https://osdoc.cogsci.nl/3.3/manual/osweb/osweb/). Here are our other suggestions.
+
+- Check "Make browser fullscreen" when you are testing the script. Every participant will run this study on full screen mode.
+
+- OSWeb test shows the presentations from the beginning to the end. If you want to know how the collected data saved in the file, you can upload the script to the [JATOS test server](https://www.jatos.org/JATOS-Tryout-Server.html). 
+
+- For some yet to be addressed issue, the practice trials can not work on OSWeb as well as on the local device. To our experience, this issue influenced little on the participants' responses.
+
+### Use JATOS
+
+In addition to [the instruction](https://osdoc.cogsci.nl/3.3/manual/osweb/jatos/) from OpenSesame website, here are our other suggestions.
+
+- Consider the circumstance you will distribute the experiment. If you will collect the data from the crowdsorucing platforms, such as [Prolific](https://osdoc.cogsci.nl/3.3/manual/osweb/prolific), [MTurk](https://osdoc.cogsci.nl/3.3/manual/osweb/mturk), or [Sona System](https://osdoc.cogsci.nl/3.3/manual/osweb/sonasystems), you can create "General Multiple Worker" as like the instructions on OpenSesame website. 
+
+- If you will assign the particular links for each of your participants, you could create "Personal Single Worker" or "Personal Multiple Worker". See details in the [JATOS manual](http://www.jatos.org/Worker-Types.html#-personal-multiple-worker).
+
+- If your participants will enter the study by the particular link, they have to **run the study on the desktop or laptop**.

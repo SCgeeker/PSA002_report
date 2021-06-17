@@ -1,0 +1,33 @@
+---
+title: "Source data and Codebook"
+description: |
+  Overview the collected data across languages and laboratory settings.
+#theme: theme.css
+#date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+- Raw data files
+
+accessible links...
+
+SP verification responses
+SP memory check
+
+PP verification responses
+
+(R script for clean the raw data)
+
+- Tidy data files
+
+accessible links...
+code books of ...
+SP verification responses
+SP memory check
+
+PP verification responses
+

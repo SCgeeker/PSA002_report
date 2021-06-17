@@ -1,0 +1,20 @@
+---
+title: "Instructions for replication study"
+description: |
+  Replicators access all the materials at the project [OSF](https://osf.io/e428p/).
+#date: "`r Sys.Date()`"
+#theme: theme.css
+site: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Replications on the registered languages
+
+If you will replicate this study in one of the registered languages (see [this page](/sum_counts.html)), you can directly used the scripts in the project [OSF](https://osf.io/e428p/). The final version of the experimental scripts are available for the in-site and online study both. For some languages we did not collect the data through JATOS server, you will have to access the material sheets and revise the experimental script for your requirement. 
+
+## Replications on the unregistered languages
+
+If you will replicate this study on the non-registered language (see [this page](/sum_translate.html)), you will have to access the English material sheet at first. To translate the materials to your targeted language, the recommended practice is to follow the [translation protocol](https://psysciacc.org/translation-process/). At this [OSF page](https://osf.io/gq7xd/), we provided the template sheet and target pictures for this study.

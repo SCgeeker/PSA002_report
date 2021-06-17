@@ -1,0 +1,121 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "What is the orientation effect?",
+      "author": [],
+      "contents": "\r\nResearch Questions\r\nThis study investigated in which language the match advantage of object orientations (a.k.a. orientation effect) would be detected in the sentence-picture verification task.\r\n\r\n\r\n\r\nFigure 1: Example of matching (solid lines) and mismatching (dashed lines) sentence-picture pairs.\r\n\r\n\r\n\r\nThe orientation effects have been suggested as the empirical evidence of mental simulations. Several theoretical assumptions about the mental simulations have yet been settled. To one extend, the mental simulation was the part of language processing (Barsalou 1999, 2009). To the other extend, the mental rotation mechanisms would boost the mental simulation (Chu and Kita 2008; Pouw et al. 2014).\r\nWe addressed two primary questions in our plan:\r\nHow much of the match advantage of object orientation can be obtained within different languages?\r\nWhat is the correlation between the mental rotation of objects and the match advantage across different languages?\r\nHypothesis\r\nIf the orientation effect is a general result, in every language we would detect this effect.\r\nWe have no specific expect for the effect in some language.\r\nImagery scores were the measures of mental rotation. We expect the equal imagery scores across the laboratories.\r\n“If the mental simulation shared the cognitive processing of mental rotation, the imagery scores could be the predictor as critical as the languages.”\r\n\r\n\r\n\r\nBarsalou, Lawrence W. 1999. “Perceptual Symbol Systems.” Behavioral and Brain Sciences 22: 577–660. https://doi.org/10.1017/S0140525X99002149.\r\n\r\n\r\n———. 2009. “Simulation, Situated Conceptualization, and Prediction.” Philos Trans R Soc Lond B Biol Sci 364: 1281–89. https://doi.org/10.1098/rstb.2008.0319.\r\n\r\n\r\nChu, Mingyuan, and Sotaro Kita. 2008. “Spontaneous Gestures During Mental Rotation Tasks: Insights into the Microdevelopment of the Motor Strategy.” Journal of Experimental Psychology: General 137 (4): 706–23. https://doi.org/10.1037/a0013157.\r\n\r\n\r\nPouw, Wim T. J. L., Jacqueline A. de Nooijer, Tamara van Gog, Rolf A. Zwaan, and Fred Paas. 2014. “Toward a More Embedded/Extended Perspective on the Cognitive Function of Gestures.” Frontiers in Psychology 5 (April). https://doi.org/10.3389/fpsyg.2014.00359.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:11+08:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Orientnation Effects: Global investigations",
+      "description": "PSA 002 meta: Investigating Object Orientation Effects beyond 19 Languages.\n",
+      "author": [
+        {
+          "name": "Sau-Chin Chen",
+          "url": "https://scchen.com"
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nNote The data collection was finished at June 16, 2021. This website is going to be updated with the data analysis and the writings on the report.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:12+08:00"
+    },
+    {
+      "path": "method_apps.html",
+      "title": "Applications for replication study",
+      "description": "All the scripts and materials are available at the project [OSF](https://osf.io/e428p/).\n",
+      "author": [],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nOpenSesame\r\nBoth the in-site and online studies were developed in this free software. Based on the original plan, every team collect data in their experimental space. After the global pandemic outbreak, the leading researchers spent months learn javascript codes that control the OpenSesame workflow on the internet browsers. The final version is the script for English participants with the tidy code. Replicators are recommended to test this version at first.\r\nNote For some languages, there are Chinese, Hebrew, and Arabic, the text lines can not be truncated on the sketchpad. We used the picture files showing the probe sentences in these languages.\r\nReplicators would download the OpenSesame from their website and test the script on your own devices. If you will run the replication in the laboratory space, you can run the experiment following Sebastiaan’s steps as like he demonstrated in his youtube video:\r\n\r\n\r\nJATOS\r\nReplicators would register an account at MindProbe if you will collect the data from the internet. At the time this page was updated, researchers could ask the administrator for your free account. Once your account is available, you can conduct the online experiment based on the workflow guide from the OpenSesame webiste.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:13+08:00"
+    },
+    {
+      "path": "method_deploy.html",
+      "title": "Delopy the on line experiment",
+      "description": "Run experiment on the desktop computers.\n",
+      "author": [],
+      "contents": "\r\nTest the OSWeb\r\nBefore you submit the script to the JATOS server such as MindeProbe, you must test the script as this instruction. Here are our other suggestions.\r\nCheck “Make browser fullscreen” when you are testing the script. Every participant will run this study on full screen mode.\r\nOSWeb test shows the presentations from the beginning to the end. If you want to know how the collected data saved in the file, you can upload the script to the JATOS test server.\r\nFor some yet to be addressed issue, the practice trials can not work on OSWeb as well as on the local device. To our experience, this issue influenced little on the participants’ responses.\r\nUse JATOS\r\nIn addition to the instruction from OpenSesame website, here are our other suggestions.\r\nConsider the circumstance you will distribute the experiment. If you will collect the data from the crowdsorucing platforms, such as Prolific, MTurk, or Sona System, you can create “General Multiple Worker” as like the instructions on OpenSesame website.\r\nIf you will assign the particular links for each of your participants, you could create “Personal Single Worker” or “Personal Multiple Worker”. See details in the JATOS manual.\r\nIf your participants will enter the study by the particular link, they have to run the study on the desktop or laptop.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:14+08:00"
+    },
+    {
+      "path": "method_ins.html",
+      "title": "Instructions for replication study",
+      "description": "Replicators access all the materials at the project [OSF](https://osf.io/e428p/).\n",
+      "author": [],
+      "contents": "\r\nReplications on the registered languages\r\nIf you will replicate this study in one of the registered languages (see this page), you can directly used the scripts in the project OSF. The final version of the experimental scripts are available for the in-site and online study both. For some languages we did not collect the data through JATOS server, you will have to access the material sheets and revise the experimental script for your requirement.\r\nReplications on the unregistered languages\r\nIf you will replicate this study on the non-registered language (see this page), you will have to access the English material sheet at first. To translate the materials to your targeted language, the recommended practice is to follow the translation protocol. At this OSF page, we provided the template sheet and target pictures for this study.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:15+08:00"
+    },
+    {
+      "path": "method_materials.html",
+      "title": "Materials for replication study",
+      "description": "Overview the project [OSF](https://osf.io/e428p/).\n",
+      "author": [],
+      "contents": "\r\nhttps://osf.io/74ujf/\r\nScripts\r\nAll the scripts for final data collection turn are available on this OSF page. Check the directories Materials -> js. Download the script you require.\r\nYou would extract the materials from OpenSesame GUI. As like the below figure.\r\n\r\n\r\n\r\n(#fig:OS_GUI)File pool browser on the right side show all the picture files. Probe sentences sheet are in the loop on the middle part. Experimenters could edit them directly.\r\n\r\n\r\n\r\nSentences\r\nIn this excel file, we summarized all the English and Chinese sentences for this experiment. When replicators will revise the probe sentences, this excel file help you manage the sheet in the “loop” item. The probe sentences in the above figure were from the “ENG_LIST1” in this excel file.\r\nPictures\r\nThe target pictures are available at here. Download the zip file and check them in your own device. If you would like the replace the picture, it is recommended to find the pictures as equal size as the original files.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:17+08:00"
+    },
+    {
+      "path": "plan_ins.html",
+      "title": "Beyond Replications",
+      "author": [],
+      "contents": "\r\nThe studies piror to\r\nSimulation-based power analysis\r\nmixedpower\r\nScenarios\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:18+08:00"
+    },
+    {
+      "path": "plan_parameters.html",
+      "title": "Within lab analysis",
+      "author": [],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nTBA\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:19+08:00"
+    },
+    {
+      "path": "plan_simulation.html",
+      "title": "Between lab analysis",
+      "author": [],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nTBA\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:19+08:00"
+    },
+    {
+      "path": "posts.html",
+      "title": "Posts",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:20+08:00"
+    },
+    {
+      "path": "prereg.html",
+      "title": "Preregistered Plan",
+      "description": "Check the preregistered plan.",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:21+08:00"
+    },
+    {
+      "path": "sum_codebook.html",
+      "title": "Source data and Codebook",
+      "description": "Overview the collected data across languages and laboratory settings.\n",
+      "author": [],
+      "contents": "\r\nRaw data files\r\naccessible links…\r\nSP verification responses SP memory check\r\nPP verification responses\r\n(R script for clean the raw data)\r\nTidy data files\r\naccessible links… code books of … SP verification responses SP memory check\r\nPP verification responses\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:22+08:00"
+    },
+    {
+      "path": "sum_counts.html",
+      "title": "Available data",
+      "description": "Overview the collected data across languages and laboratory settings.\n",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nin site data\r\nosweb data\r\nAll data\r\n\r\nin site data\r\nBetween September 2019 and March 2020, the data were collected from the registered teams’ affiliations. All the teams followed the data collection protocol. This data collection suspended at March 2020 because of the global pandemic outbreak.\r\n\r\n\r\n\r\n{\"columns\":[{\"label\":[\"Language\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"PSA_ID\"],\"name\":[2],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"SP_N\"],\"name\":[3],\"type\":[\"dbl\"],\"align\":[\"right\"]},{\"label\":[\"PP_N\"],\"name\":[4],\"type\":[\"dbl\"],\"align\":[\"right\"]}],\"data\":[{\"1\":\"English\",\"2\":\"CAN_020\",\"3\":\"97\",\"4\":\"97\"},{\"1\":\"English\",\"2\":\"GBR_005\",\"3\":\"52\",\"4\":\"52\"},{\"1\":\"English\",\"2\":\"GBR_006\",\"3\":\"25\",\"4\":\"25\"},{\"1\":\"English\",\"2\":\"GBR_014\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"English\",\"2\":\"GBR_043\",\"3\":\"25\",\"4\":\"25\"},{\"1\":\"English\",\"2\":\"MYS_003\",\"3\":\"47\",\"4\":\"47\"},{\"1\":\"English\",\"2\":\"MYS_004\",\"3\":\"100\",\"4\":\"100\"},{\"1\":\"English\",\"2\":\"PSA_001\",\"3\":\"41\",\"4\":\"41\"},{\"1\":\"English\",\"2\":\"TUR_007E\",\"3\":\"8\",\"4\":\"8\"},{\"1\":\"English\",\"2\":\"USA_020\",\"3\":\"23\",\"4\":\"23\"},{\"1\":\"English\",\"2\":\"USA_032\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"English\",\"2\":\"USA_033\",\"3\":\"31\",\"4\":\"31\"},{\"1\":\"English\",\"2\":\"USA_065\",\"3\":\"32\",\"4\":\"32\"},{\"1\":\"English\",\"2\":\"USA_173\",\"3\":\"32\",\"4\":\"31\"},{\"1\":\"German\",\"2\":\"AUT_002\",\"3\":\"99\",\"4\":\"99\"},{\"1\":\"Greek\",\"2\":\"GRC_002\",\"3\":\"98\",\"4\":\"98\"},{\"1\":\"Hebrew\",\"2\":\"ISR_001\",\"3\":\"146\",\"4\":\"145\"},{\"1\":\"Hindi\",\"2\":\"IND_003\",\"3\":\"79\",\"4\":\"78\"},{\"1\":\"Magyar\",\"2\":\"HUN_001\",\"3\":\"129\",\"4\":\"129\"},{\"1\":\"Norwegian\",\"2\":\"NOR_003\",\"3\":\"51\",\"4\":\"51\"},{\"1\":\"Norwegian\",\"2\":\"NOR_004\",\"3\":\"72\",\"4\":\"70\"},{\"1\":\"Polish\",\"2\":\"POL_001\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"Portuguese\",\"2\":\"POR_001\",\"3\":\"5\",\"4\":\"5\"},{\"1\":\"Simple Chinese\",\"2\":\"CHN_005\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"Simple Chinese\",\"2\":\"CHN_019\",\"3\":\"31\",\"4\":\"30\"},{\"1\":\"Slovak\",\"2\":\"SVK_001\",\"3\":\"91\",\"4\":\"91\"},{\"1\":\"Slovak\",\"2\":\"SVK_002\",\"3\":\"47\",\"4\":\"47\"},{\"1\":\"Spanish\",\"2\":\"COL_001\",\"3\":\"69\",\"4\":\"69\"},{\"1\":\"Spanish\",\"2\":\"ECU_001\",\"3\":\"58\",\"4\":\"58\"},{\"1\":\"Thai\",\"2\":\"THA_001\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"Traditional Chinese\",\"2\":\"TWN_001\",\"3\":\"60\",\"4\":\"60\"},{\"1\":\"Traditional Chinese\",\"2\":\"TWN_002\",\"3\":\"33\",\"4\":\"33\"},{\"1\":\"Turkish\",\"2\":\"TUR_007\",\"3\":\"84\",\"4\":\"84\"},{\"1\":\"Turkish\",\"2\":\"TUR_025\",\"3\":\"99\",\"4\":\"98\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10]},\"rows\":{\"min\":[10],\"max\":[10]},\"pages\":{}}}\r\n  \r\n\r\n21 teams completed the data collection or reached the minimal sample size before the global pandemic outbreak. Across the site data, 2014 participants finished sentence-picture verification task; 2007 participants finished picture-picture verification task. Some PP data files were successfully imported after I decreased the criterion of file size. 7 participants’ data files were lost because the experimenters did not upload the files or submitted the wrong files.\r\nosweb data\r\nBetween January 2021 and June 2021, the data collection resumed after we migrated the in-site scripts to JATOS website. The rest of teams distributed the corresponding links to their participants.\r\n\r\n\r\n\r\n{\"columns\":[{\"label\":[\"Language\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"PSA_ID\"],\"name\":[2],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"SP_N\"],\"name\":[3],\"type\":[\"dbl\"],\"align\":[\"right\"]},{\"label\":[\"PP_N\"],\"name\":[4],\"type\":[\"dbl\"],\"align\":[\"right\"]}],\"data\":[{\"1\":\"Arabic\",\"2\":\"ARE_001\",\"3\":\"11\",\"4\":\"11\"},{\"1\":\"Arabic\",\"2\":\"ARE_002\",\"3\":\"49\",\"4\":\"49\"},{\"1\":\"Brazilian Portuguese\",\"2\":\"BRA_003\",\"3\":\"47\",\"4\":\"47\"},{\"1\":\"English\",\"2\":\"AUS_091\",\"3\":\"37\",\"4\":\"37\"},{\"1\":\"English\",\"2\":\"NGA_001\",\"3\":\"42\",\"4\":\"42\"},{\"1\":\"English\",\"2\":\"NZL_005\",\"3\":\"298\",\"4\":\"298\"},{\"1\":\"English\",\"2\":\"PSA_002\",\"3\":\"62\",\"4\":\"62\"},{\"1\":\"English\",\"2\":\"TWN_002E\",\"3\":\"10\",\"4\":\"10\"},{\"1\":\"English\",\"2\":\"USA_011\",\"3\":\"58\",\"4\":\"58\"},{\"1\":\"English\",\"2\":\"USA_020\",\"3\":\"24\",\"4\":\"24\"},{\"1\":\"English\",\"2\":\"USA_030\",\"3\":\"25\",\"4\":\"25\"},{\"1\":\"English\",\"2\":\"USA_033\",\"3\":\"43\",\"4\":\"43\"},{\"1\":\"German\",\"2\":\"AUT_005\",\"3\":\"106\",\"4\":\"106\"},{\"1\":\"German\",\"2\":\"DEU_020\",\"3\":\"26\",\"4\":\"26\"},{\"1\":\"Norwegian\",\"2\":\"NOR_002\",\"3\":\"20\",\"4\":\"20\"},{\"1\":\"Portuguese\",\"2\":\"POR_001\",\"3\":\"54\",\"4\":\"54\"},{\"1\":\"Serbian\",\"2\":\"SRB_002\",\"3\":\"81\",\"4\":\"81\"},{\"1\":\"Serbian\",\"2\":\"SRB_002B\",\"3\":\"45\",\"4\":\"45\"},{\"1\":\"Traditional Chinese\",\"2\":\"TWN_002\",\"3\":\"53\",\"4\":\"53\"},{\"1\":\"Turkish\",\"2\":\"TUR_023\",\"3\":\"73\",\"4\":\"73\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10]},\"rows\":{\"min\":[10],\"max\":[10]},\"pages\":{}}}\r\n  \r\n\r\nThe osweb teams collected the data from the languages as following: Arabic, Brazilian Portuguese, English, German, Norwegian, Portuguese, Serbian, Traditional Chinese, Turkish. Across the osweb data, 1164 participants finished sentence-picture verification task; 1164 participants finished picture-picture verification task.\r\nAccording to our preregistered plan, each laboratory has to collect at least 50 participants. Some laboratories did not reach the minimal criterion because of the following reasons: (1)their works were interrupted by the pandemic situation; (2)the participants performed worse through the online study; (3) the laboratories allocated the seats for the foreign participants; (4) A language (e.g., Serbian) has a various of scripts.\r\nAll data\r\n\r\n\r\n\r\n{\"columns\":[{\"label\":[\"Language\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"LAB_N\"],\"name\":[2],\"type\":[\"int\"],\"align\":[\"right\"]},{\"label\":[\"SP_N\"],\"name\":[3],\"type\":[\"dbl\"],\"align\":[\"right\"]},{\"label\":[\"PP_N\"],\"name\":[4],\"type\":[\"dbl\"],\"align\":[\"right\"]}],\"data\":[{\"1\":\"Arabic\",\"2\":\"2\",\"3\":\"60\",\"4\":\"60\"},{\"1\":\"Brazilian Portuguese\",\"2\":\"1\",\"3\":\"47\",\"4\":\"47\"},{\"1\":\"English\",\"2\":\"21\",\"3\":\"1212\",\"4\":\"1211\"},{\"1\":\"German\",\"2\":\"3\",\"3\":\"231\",\"4\":\"231\"},{\"1\":\"Greek\",\"2\":\"1\",\"3\":\"98\",\"4\":\"98\"},{\"1\":\"Hebrew\",\"2\":\"1\",\"3\":\"146\",\"4\":\"145\"},{\"1\":\"Hindi\",\"2\":\"1\",\"3\":\"79\",\"4\":\"78\"},{\"1\":\"Magyar\",\"2\":\"1\",\"3\":\"129\",\"4\":\"129\"},{\"1\":\"Norwegian\",\"2\":\"3\",\"3\":\"143\",\"4\":\"141\"},{\"1\":\"Polish\",\"2\":\"1\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"Portuguese\",\"2\":\"1\",\"3\":\"59\",\"4\":\"59\"},{\"1\":\"Serbian\",\"2\":\"2\",\"3\":\"126\",\"4\":\"126\"},{\"1\":\"Simple Chinese\",\"2\":\"2\",\"3\":\"81\",\"4\":\"80\"},{\"1\":\"Slovak\",\"2\":\"2\",\"3\":\"138\",\"4\":\"138\"},{\"1\":\"Spanish\",\"2\":\"2\",\"3\":\"127\",\"4\":\"127\"},{\"1\":\"Thai\",\"2\":\"1\",\"3\":\"50\",\"4\":\"50\"},{\"1\":\"Traditional Chinese\",\"2\":\"2\",\"3\":\"146\",\"4\":\"146\"},{\"1\":\"Turkish\",\"2\":\"3\",\"3\":\"256\",\"4\":\"255\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10]},\"rows\":{\"min\":[10],\"max\":[10]},\"pages\":{}}}\r\n  \r\n\r\nAt the end of data collection, 50 laboratories participated in this project. 13 laboratories collected the minimal samples. Finally we collected the data from 18 languages.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:23+08:00"
+    },
+    {
+      "path": "sum_translate.html",
+      "title": "Translation protocol",
+      "description": "Overview the collected data across languages and laboratory settings.\n",
+      "author": [],
+      "contents": "\r\nThe original materials are from the original studies on the orientation effects (Stanfield and Zwaan 2001; Zwaan and Pecher 2012). In addition to the teams recruited the American participants, the other teams had to translated the original materials to the local languages. Translators conducted the translated materials in terms of the PSA protocol.\r\nIf you will conduct the translations, you can download the translation template for your work. The target pictures are available at here.\r\n\r\n\r\n\r\nStanfield, Robert A., and Rolf A. Zwaan. 2001. “The Effect of Implied Orientation Derived from Verbal Context on Picture Recognition.” Psychological Science 12 (2): 153–56. https://doi.org/10.1111/1467-9280.00326.\r\n\r\n\r\nZwaan, Rolf A., and Diane Pecher. 2012. “Revisiting Mental Simulation in Language Comprehension: Six Replication Attempts.” PLoS ONE 7: e51382. https://doi.org/10.1371/journal.pone.0051382.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-17T20:07:25+08:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
