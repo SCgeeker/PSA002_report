@@ -52,8 +52,8 @@ navbar:
         - text: "Scenario: TBA"
     - text: "Posts"
       href: posts.html
-#   - text: "Reference"
-#      href: reference.html
+    - icon: fab fa-github
+      href: https://github.com/SCgeeker/PSA002_report
 collections:
   posts:
     categories: false
