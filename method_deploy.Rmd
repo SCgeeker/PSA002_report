@@ -1,10 +1,10 @@
 ---
 title: "Delopy the on line experiment"
 description: |
-  Run experiment on the desktop computers.
+  Test experiment on the desktop computers and on Internet.
 #date: "`r Sys.Date()`"
 #theme: theme.css
-site: distill::distill_article
+#site: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}

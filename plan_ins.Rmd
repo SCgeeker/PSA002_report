@@ -1,25 +1,19 @@
 ---
 title: "Beyond Replications"
 description: |
+ Brief the analysis plan and the extended analysis.
 #date: "`r Sys.Date()`"
 #theme: theme.css
-site: 
-  distill::distill_article: 
-    toc: true
-    toc_depth: 3
-    tpc_float: false
+#site: 
+#  distill::distill_article: 
+#    toc: true
+#    toc_depth: 3
+#    tpc_float: false
+bibliography:  "./includes/bib/Orientation Cross Languages.bib"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The studies piror to
-
-
-## Simulation-based power analysis
-
-[`mixedpower`](https://lkumle.github.io/power_notebooks/)
-
-## Scenarios 
-
+Our original plan used mixed-effect model [@baayen_mixed-effects_2008 ; @batesParsimoniousMixedModels2015] evaluate the orientation effects and the interaction with languages. Because about 1/3 teams collected data on line, our final analysis plan additionally processed the shift of orientation effects along with the experimental circumstances (in site vs. on line). In this site we reproduced the data analysis based on the partial data. In the sub-pages under this title, we collect the reproducible plans for the researchers who have the interest and resource to conduct the study. A plan managed some extended hypotheses and the simulation-based power analysis. We appreciated [`mixedpower`](https://lkumle.github.io/power_notebooks/) being the tool to design the study [@kumleEstimatingPowerGeneralized2021]. We welcome researchers provide your comments and ideas in the site [posts](/posts.html).

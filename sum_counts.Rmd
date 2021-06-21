@@ -11,7 +11,7 @@ output:
     tpc_float: false
 ---
 
-```{r setup, include=FALSE,  code = readLines("init.R"), cache=TRUE, cache.path="./catch/"}
+```{r setup, include=FALSE, code = readLines("init.R"), cache=TRUE, cache.path="./catch/"}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 

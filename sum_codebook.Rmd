@@ -1,33 +1,39 @@
 ---
-title: "Source data and Codebook"
+title: "Raw data, tidy data, and Codebook"
 description: |
   Overview the collected data across languages and laboratory settings.
 #theme: theme.css
 #date: "`r Sys.Date()`"
-output: distill::distill_article
+#output: distill::distill_article
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, code = readLines("init.R"), cache=TRUE, cache.path="./catch/"}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-- Raw data files
+### Raw data files
 
+The all raw data were uploaded to the[project OSF](https://osf.io/2zxrw/). We will make the raw data public once we submit the final report to PB&R.
+
+<!---
 accessible links...
+--->
 
-SP verification responses
-SP memory check
+### Tidy data files
 
-PP verification responses
+The example analysis in this website were from the tidy data files. Researchers would access the data files by the subtitles.
 
-(R script for clean the raw data)
+#### [Sentence-Picture verification](includes/files/SP_V_tidy.csv)
 
-- Tidy data files
+```{r SP_V_code, echo=FALSE}
+codebook::compact_codebook(read_csv("./includes/files/SP_V_tidy.csv"))
+```
 
-accessible links...
-code books of ...
-SP verification responses
-SP memory check
 
-PP verification responses
 
+#### [Picture-Picture verification](includes/files/PP_tidy.csv)
+
+
+```{r PP_code, echo=FALSE}
+codebook::compact_codebook(read_csv("./includes/files/PP_tidy.csv"))
+```

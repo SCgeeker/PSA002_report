@@ -13,3 +13,7 @@ lubridate
 magrittr
 flextable
 shiny
+Matrix
+lme4
+mixedpower
+simr

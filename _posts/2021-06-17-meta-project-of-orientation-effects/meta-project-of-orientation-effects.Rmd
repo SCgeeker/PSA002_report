@@ -5,7 +5,7 @@ description: |
 author:
   - name: Sau-Chin Chen
     url: https://scchen.com
-date: 06-17-2021
+date: "`r Sys.Date()`"
 output:
   distill::distill_article:
     self_contained: false

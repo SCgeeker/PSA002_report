@@ -1,7 +1,7 @@
 ---
-title: "Instructions for replication study"
+title: "Instructions for reproduction study"
 description: |
-  Replicators access all the materials at the project [OSF](https://osf.io/e428p/).
+  Access all the materials at the project [OSF](https://osf.io/e428p/).
 #date: "`r Sys.Date()`"
 #theme: theme.css
 site: distill::distill_article
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Replications on the registered languages
 
-If you will replicate this study in one of the registered languages (see [this page](/sum_counts.html)), you can directly used the scripts in the project [OSF](https://osf.io/e428p/). The final version of the experimental scripts are available for the in-site and online study both. For some languages we did not collect the data through JATOS server, you will have to access the material sheets and revise the experimental script for your requirement. 
+If you will replicate this study in one of the registered languages (see [this page](/sum_counts.html)), you can directly used the scripts in the project [OSF](https://osf.io/e428p/). The final version of the experimental scripts are available for any circumstance. Namely you can conduct the study in your lab space as well as distribute it through Internet. For some languages we did not collect the data through JATOS server, you have to access the material sheets and revise the experimental script for your requirement. 
 
 ## Replications on the unregistered languages
 

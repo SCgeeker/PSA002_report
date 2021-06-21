@@ -15,8 +15,10 @@ navbar:
 #      href: index.html
     - text: "About"
       menu:
-        - text: "Orientation Effects"
+        - text: "Origin"
           href: about.html
+        - text: "Orientation Effects"
+          href: intro.html
         - text: "Plan"
           href: prereg.html
     - text: "Dataset"
@@ -42,15 +44,12 @@ navbar:
       menu:
         - text: "Instruction"
           href: plan_ins.html
-        - text: "Parameters"
-          href: plan_parameters.html
-        - text: "Simulation"
-          href: plan_simulation.html
+        - text: "General Analysis"
+          href: plan_analysis.html
         - text: "---"
-        - text: "Scenario: studied language"
-          href:
-        - text: "Scenario: yet-studied language"
-          href:
+        - text: "Scenario: platforms issue"
+          href: plan_simulation01.html
+        - text: "Scenario: TBA"
     - text: "Posts"
       href: posts.html
 #   - text: "Reference"

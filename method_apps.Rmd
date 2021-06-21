@@ -1,10 +1,10 @@
 ---
-title: "Applications for replication study"
+title: "Applications for Reproduction Study"
 description: |
   All the scripts and materials are available at the project [OSF](https://osf.io/e428p/).
-date: "`r Sys.Date()`"
+#date: "`r Sys.Date()`"
 #theme: theme.css
-site: distill::distill_article
+#site: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
@@ -13,15 +13,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### [OpenSesame](https://osdoc.cogsci.nl/)
 
-Both the in-site and online studies were developed in this free software. Based on the original plan, every team collect data in their experimental space. After the global pandemic outbreak, the leading researchers spent months learn `javascript` codes that control the OpenSesame workflow on the internet browsers. The [final version](https://osf.io/8yn5j/) is the script for English participants with the tidy code. Replicators are recommended to test this version at first. 
+Both the in-site and online studies were developed in **OpenSesame**. Based on the original plan, every team collect data in their experimental space. After the global pandemic outbreak, the leading researchers spent months learn `javascript` codes that control the OpenSesame workflow on the internet browsers. The [final version](https://osf.io/8yn5j/) is the script for English participants with the tidy code. Researchers are recommended to test this version at first. 
 
-**Note** For some languages, there are Chinese, Hebrew, and Arabic, the text lines can not be truncated on the sketchpad. We used the picture files showing the probe sentences in these languages.
+**Note** For some languages, there are Chinese, Hebrew, and Arabic, the text lines can not be truncated on the sketchpad. We showedg the probe sentences in PNG format.
 
-Replicators would download the OpenSesame from their website and test the script on your own devices. If you will run the replication in the laboratory space, you can run the experiment following Sebastiaan's steps as like he demonstrated in his youtube video:
+Researchers would download the OpenSesame from their website and test the script on your own devices. If you will run the replication in the laboratory space, you can run the experiment following Sebastiaan's steps as like he demonstrated in his youtube video:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eiGXe-t-C28?start=3517" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### [JATOS](https://www.jatos.org/)
 
-Replicators would register an account at [MindProbe](https://www.mindprobe.eu/) if you will collect the data from the internet. At the time this page was updated, researchers could ask the administrator for your free account. Once your account is available, you can conduct the online experiment based on the [workflow guide](https://osdoc.cogsci.nl/3.3/manual/osweb/workflow/) from the OpenSesame webiste.
+Researchers would register an account at [MindProbe](https://www.mindprobe.eu/) if you will collect the data from the internet. At the time this page was updated, researchers could ask the administrator for your free account. Once your account is available, you can conduct the online experiment based on the [workflow guide](https://osdoc.cogsci.nl/3.3/manual/osweb/workflow/) from the OpenSesame webiste.

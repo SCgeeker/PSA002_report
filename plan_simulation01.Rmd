@@ -1,0 +1,140 @@
+---
+title: "Orientation effects between the platforms"
+description: |
+#date: "`r Sys.Date()`"
+#site: 
+#  distill::distill_website:
+#    toc: true
+#    toc_depth: 3
+#    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(data.table)
+library(lubridate)
+library(magrittr)
+library(flextable)
+library(lme4)
+library(mixedpower)
+library(simr)
+
+load("../EXPDATA/3_analysis/scene01.RData")
+```
+
+
+In this scenario, we evaluate the match advantage along with the experiment platforms (in site vs. on line). In terms of the coefficients from the real data analysis, we evaluate how many participants and items the reproduction studies will employ. The required numbers of participants and items are based on the simulated-based power analysis. We use `mixedpower` (Kumle, Võ, and Draschkow, 2021) to compute the reached power. This page followed their [notebook](https://lkumle.github.io/power_notebooks/Scenario3_notebook.html) to estimate how many participants/items required in the next study. For each simulation the codes estimated powers based on the artificial data and on the smallest effect size of interest(SESOI).
+
+
+### Real data analysis
+
+The data collected from OSWeb appeared to be longer the the data collected from OpenSesame in site. Below mixed-effect model showed a weak match advantage when the platforms(OpenSesame, OSWeb) is treated as fixed effect. We also extract the coefficients for the simulations from the below codes.
+
+```{r OS_lmer, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE,cache.path="./catch/"}
+EN_OS_model <- lmer(response_time ~ Match*opensesame_codename + (1|Subject) + (1|Target),
+                 data = SP_V_en_mutate)
+
+## mixed effect model summary
+summary(EN_OS_model)
+## Extract fixed effects
+EN_OS_model_fef <- fixef(EN_OS_model)
+## Extract random effects
+EN_OS_model_ref <- as.list(VarCorr(EN_OS_model) %>% unlist())
+EN_OS_model_res <- sigma(EN_OS_model)
+```
+
+The summary showed a weak orientation effect and a huge difference between the study platforms.
+
+### Build artificial data
+
+We extracted the required columns from the tidy data. For the accuracy of analysis process, participants' and targets' ids were converted to numbers.
+
+```{r build_art_data, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+## Retrieve the required columns
+partial_real_data <- SP_V_en %>% select(PSA_ID, subject_nr, Target, Match, opensesame_codename) %>%
+  mutate(Subject = paste0(PSA_ID,"_",subject_nr))
+
+## Build the artifial data
+artificial_data <- partial_real_data  %>% 
+  mutate(Subject = as.numeric(as.factor(Subject)),
+         Target = as.numeric(as.factor(Target)))
+```
+
+In total, we convert the data columns from `r artificial_data %>% pull(Subject) %>% unique() %>% length()` participants into the artificial data. 
+
+
+### Create Lmer
+
+In the mixed-effect model by artificial data, in addition to the residual variance was 1/100 of original coefficient, the other coefficients followed the original result. We adjusted the residual variance in terms of the assumption that the researchers would reproduce this study in a single data collection workflow where the performance variance would be controlled. 
+
+```{r build_art_lmer, echo=TRUE, message=FALSE, warning=FALSE}
+# ------------------------------------------ #
+# formula for GLMM
+formula_lmer <- RT ~ Match*opensesame_codename  + (1 | Subject) + (1 | Target)
+
+# ------------------------------------------ #
+# CREATE LMER
+artificial_lmer <- makeLmer(RT ~ Match*opensesame_codename  + (1 | Subject) + (1 | Target),
+                           fixef = EN_OS_model_fef, VarCorr = EN_OS_model_ref, sigma = EN_OS_model_res/100,   ## Minimze residual std
+                           data = artificial_data)
+
+# lets have a look!
+summary(artificial_lmer)
+```
+
+The estimated effects were as equal as the real data analysis, but the standard deviations had been smaller.
+
+### Power analysis
+
+**How many participants we will require?**
+
+We decided 5 sample size: 50, 75, 100, 125, 150 and accumulated 1000 simulated results respectively. Because the simulation codes take a lot of time, the below chunk shows the codes only.
+
+```
+model <- artificial_lmer  # which model do we want to simulate power for?
+data <- artificial_data # data used to fit the model
+fixed_effects <- c("Match", "opensesame_codename") # all fixed effects specified in artificial_glmer
+simvar_subj <- "Subject" # which random variable do we want to vary in the simulation?
+
+simvar_item <- "Target"
+
+# ------------------------------------------ #
+# SIMULATION PARAMETERS
+steps_subj <- c(50,75,100,125,150) # which sample sizes do we want to look at?
+
+steps_item <- c(24,48,72,96,120) # which sample sizes do we want to look at?
+
+
+
+critical_value <- 2 # which t/z value do we want to use to test for significance?
+n_sim <- 1000 # how many single simulations should be used to estimate power?
+
+# ------------------------------------------ #
+# INCLUDE SESOI SIMULATION
+SESOI <- EN_OS_model_fef*.15 # specify SESOI (15% smaller betas)
+
+# ------------------------------------------ #
+# RUN SIMULATION WITH MIXEDPOWER
+power_subj <- mixedpower(model = model, data = data,
+                       fixed_effects = fixed_effects,
+                       simvar = simvar_subj, steps = steps_subj,
+                       critical_value = critical_value, n_sim = n_sim,
+                       SESOI = SESOI)
+```
+
+The simulated powers indicated that increasing sample size difficultly improve the power. We could learn very little from a mega study collected thousands of participants. 
+
+`r knitr::kable(power)`
+
+
+**How many items we will require?**
+
+
+We decided 5 sample size: 24,48,72,96,120 and accumulated 1000 simulated results respectively. In the above chunk, we replaced the parameters `simvar` and `steps` with `simvar_item` and `steps_item`. Because the simulation codes take a lot of time, we finished the simulations before we created this page.
+
+
+`r knitr::kable(power_item)`
+
+The results showed that increasing the items in a study could improve the success rate to detect the orientation effect. On the other hand, when we hypothesize the true effect was smaller than this project measured (see SESOI rows), increasing items help little to detect the orientation effect.
+
