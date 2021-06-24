@@ -1,11 +1,12 @@
 ---
 title: "Meta Project of Orientation Effects"
 description: |
-  We are collecting the ideas to replicate and explore the orientation effects.
+  We are collecting the ideas and plans to replicate and explore the orientation effects.
 author:
   - name: Sau-Chin Chen
     url: https://scchen.com
 date: "`r Sys.Date()`"
+bibliography: "../../includes/bib/Orientation Cross Languages.bib"
 output:
   distill::distill_article:
     self_contained: false
@@ -14,7 +15,80 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(data.table)
+library(magrittr)
+library(flextable)
+library(lme4)
+library(lmerTest)
+
+# Import multiple-bytes string in English system
+Sys.setlocale("LC_ALL","English") 
+
+# Import tidy SP verification data
+SP_V_tidy <- read_csv("../../../EXPDATA/3_analysis/SP_V_tidy.csv") 
 ```
 
-As one kind of simulation effects (citation), orientation effects are suggested as the probe to investigate how human minds simulate the objects in the processing of language comprehension.
+PSA 002 started the data collection at 2019 Autum. Through the 2020 pandemic outbreak, we finally finished data collection at 2021 June. I have the idea manage this website when we started the data collection on line. Between the end of data collection and the beginning of data analysis, I wrote this post to declare how this website would extend the studies on the orientation effect and other mental simulation effects.
+
+## Why language effects are difficultly replicated?
+
+As one kind of simulation effects [@stanfield_effect_2001; @zwaanRevisitingMentalSimulation2012], the orientation effect are suggested as the probe to investigate how human minds simulate the object orientations, horizontal and vertical, in the processing of sentence reading. Although the English replications indicated the weak magnitude, the other European language studies hardly detect the orientation effect [@kosterMentalSimulationObject2018; @rommersObjectShapeOrientation2013]. These inconsistent results showed that the orientation effect may not be as general as the other simulation effects. 
+
+Language psychologists are facing the theoretical and empirical issues at this circumstance. Theoretically no general theory could explain and predict which aspect of simulation effects detectable in some language. Empirically researchers have to evaluate the simulation effects in terms of the balanced context among languages. [PSA 002 project](https://scgeeker.github.io/PSA002_report/prereg.html) at first challenged this empirical issue based on teams force. Many non-English teams translated the original English materials into the native languages. Every registered team collected the data as they can, even we had to modify the preregistered plan to collect the data on line instead of in site. Our collected data may not only provide the clues to detect a general orientation effect but also bring the new issue such as the data sources.  
+
+
+## Exploratory analysis wanted
+
+In addition to the general analysis preregisterd in [the plan](https://scgeeker.github.io/PSA002_report/prereg.html), we are looking forward to the insight on the particular language and data source. Below tables summarizes the data collected in site and on Internet. Followed the original study [@stanfield_effect_2001] we counted the orientation effect in terms of the medians. 
+
+```{r lang_sum_insite, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Summarize in site data by Language: sample size, median reaction times (ms) and accuracy percentil in brackets."}
+SP_V_tidy %>%  
+  filter(opensesame_codename != "osweb") %>% 
+  mutate(Subject = paste0(PSA_ID,"_",subject_nr)) %>%
+  group_by(Language, Subject, Match) %>%
+  summarise(subject_M = median(response_time), subject_ACC = n()/12) %>%
+  group_by(Language, Match) %>%
+  summarise(N = n(), med_RT = median(subject_M), mean_ACC = mean(subject_ACC)) %>%
+  pivot_wider(names_from = Match, values_from = c(med_RT, mean_ACC)) %>%
+  mutate(Effect = (med_RT_N - med_RT_Y) ) %>%
+  transmute( N=N,
+             Mismatch_stat = paste0(round(med_RT_N),"(",round(mean_ACC_N*100,2),")"),
+             Match_stat = paste0(round(med_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
+             Effect = Effect) %>%
+  flextable() %>% 
+  set_header_labels(Language = "Language", N = "N", Mismatch_stat ="Mismatching", Match_stat = "Matching", Effect = "Orientation Effect")
+```
+
+
+```{r lang_sum_osweb, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Summarize on line data by Language: sample size, median reaction times (ms) and accuracy percentil in brackets."}
+# Import tidy SP verification data
+SP_V_tidy %>%  
+  filter(opensesame_codename == "osweb") %>% 
+  mutate(Subject = paste0(PSA_ID,"_",subject_nr)) %>%
+  group_by(Language, Subject, Match) %>%
+  summarise(subject_M = median(response_time), subject_ACC = n()/12) %>%
+  group_by(Language, Match) %>%
+  summarise(N = n(), med_RT = median(subject_M), mean_ACC = mean(subject_ACC)) %>%
+  pivot_wider(names_from = Match, values_from = c(med_RT, mean_ACC)) %>%
+  mutate(Effect = (med_RT_N - med_RT_Y) ) %>%
+  transmute( N=N,
+             Mismatch_stat = paste0(round(med_RT_N),"(",round(mean_ACC_N*100,2),")"),
+             Match_stat = paste0(round(med_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
+             Effect = Effect) %>%
+  flextable() %>% 
+  set_header_labels(Language = "Language", N = "N", Mismatch_stat ="Mismatching", Match_stat = "Matching", Effect = "Orientation Effect")
+```
+
+Two points require the advacned exploratory analysis: (1) Data collected from the laboratory space tended to show positive but weak orientation effects whereas the data collected from the OSWeb and JATOS tended to show negative effects; (2) Some languages showed opposite patterns from the data sources, such as English, Turkish, Traditional Chinese. Alothough we have yet conducted the planned analysis, participants' awareness in site and on Internet may alter the pattern of orientation effect. Understanding the factors caused this difference obviously require the advanced exploratory analysis. 
+
+## Accelerating Reproductions
+
+Thanks to PSA team collaboration, many languages had the first data of orientation effect. For these languages, the current result is the naive finding and requires the replications. To accelerate the reproduction studies, this website managed the [reproduction protocol](https://scgeeker.github.io/PSA002_report/method_ins.html) for the researchers who will conduct the direct or extended replications. Experts of a language could test if some language aspects make the orientation effects present/absent. According to the interpretations of @chenDoesObjectSize2020, Dutch readers could be aware of the object orientations from the verb affix. This aspect could make Dutch as one language that hardly detected the orientation effects. Based on the reporduction protocol, the experts will use the design of sentence-picture verification task to test the affection of their suggestive language aspects. 
+
+## Chaining ideas
+
+We wish this website would be the hub for the following studies on the orientation effect (and other simulation effects) in terms of PSA 002 results. The site host will update the posts when the new studies will be launched and were completed. Researchers who are running the studies by their own resource are welcomed to write a post about your studies. With your agreement, we will chain your post to this site (See [blog post workflow](https://rstudio.github.io/distill/blog_workflow.html#importing-a-post) ). With the accumulations of replications and extened studies, the evidences of orientation effect would improve the theories of mental simulations. In the long run, researchers will learn how to manage the reproducible psycholinguistic researches from this topic.
+
+
 

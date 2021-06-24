@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -2088,6 +2087,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/datatables-binding-0.18/datatables.js"></script>
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="site_libs/jszip-1.10.20/jszip.min.js"></script>
+  <script src="site_libs/pdfmake-1.10.20/pdfmake.js"></script>
+  <script src="site_libs/pdfmake-1.10.20/vfs_fonts.js"></script>
+  <link href="site_libs/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet" />
+  <script src="site_libs/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script>
+  <script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script>
+  <script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script>
+  <script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script>
+  <script src="site_libs/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script>
+  <link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+  <script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+  <link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+  <script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+  <link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2264,7 +2285,7 @@ Metadata for search engines
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><strong>Date published</strong>: 2021-06-21</li>
+<li><strong>Date published</strong>: 2021-06-24</li>
 </ul>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2358,316 +2379,8 @@ Metadata for search engines
 </div>
 <h2 id="codebook-table">Codebook table</h2>
 <div class="layout-chunk" data-layout="l-body">
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 7%" />
-<col style="width: 4%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 5%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 20%" />
-<col style="width: 3%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: left;">data_type</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">n_unique</th>
-<th style="text-align: right;">empty</th>
-<th style="text-align: left;">min</th>
-<th style="text-align: left;">median</th>
-<th style="text-align: left;">max</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
-<th style="text-align: right;">whitespace</th>
-<th style="text-align: left;">hist</th>
-<th style="text-align: left;">label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="#PSA_ID">PSA_ID</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#SEED">SEED</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">3024</td>
-<td style="text-align: left;">9497</td>
-<td style="text-align: right;">3615.9203</td>
-<td style="text-align: right;">3326.363</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2583&gt;&lt;U+2583&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#datetime">datetime</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2067</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">24</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#logfile">logfile</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3289</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">105</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#subject_nr">subject_nr</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">68</td>
-<td style="text-align: left;">5375</td>
-<td style="text-align: right;">922.6107</td>
-<td style="text-align: right;">1485.397</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#task_order">task_order</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#List">List</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">68</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">15</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#Match">Match</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Orientation">Orientation</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#PList">PList</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">14</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Probe">Probe</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1075</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">11</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">132</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#Target">Target</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">22</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#response_time">response_time</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">638</td>
-<td style="text-align: left;">471343</td>
-<td style="text-align: right;">938.9592</td>
-<td style="text-align: right;">4224.964</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#correct">correct</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">1.0000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#opensesame_codename">opensesame_codename</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">17</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#opensesame_version">opensesame_version</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Language">Language</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">20</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-</tbody>
-</table>
+<div id="htmlwidget-23c4eb5c671de407d14f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-23c4eb5c671de407d14f">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"2\" data-max=\"3289\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"3615.92028159099\" data-scale=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"4224.9640483756\" data-scale=\"12\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#PSA_ID\">PSA_ID<\/a>","<a href=\"#SEED\">SEED<\/a>","<a href=\"#datetime\">datetime<\/a>","<a href=\"#logfile\">logfile<\/a>","<a href=\"#subject_nr\">subject_nr<\/a>","<a href=\"#task_order\">task_order<\/a>","<a href=\"#List\">List<\/a>","<a href=\"#Match\">Match<\/a>","<a href=\"#Orientation\">Orientation<\/a>","<a href=\"#PList\">PList<\/a>","<a href=\"#Probe\">Probe<\/a>","<a href=\"#Target\">Target<\/a>","<a href=\"#response_time\">response_time<\/a>","<a href=\"#correct\">correct<\/a>","<a href=\"#opensesame_codename\">opensesame_codename<\/a>","<a href=\"#opensesame_version\">opensesame_version<\/a>","<a href=\"#Language\">Language<\/a>"],["character","numeric","character","character","numeric","character","character","character","character","character","character","character","numeric","numeric","character","character","character"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[50,null,2067,3289,null,4,68,2,2,34,1075,48,null,null,3,7,18],[0,null,0,0,null,0,0,0,0,0,0,0,null,null,0,0,0],["7","1","10","8","1","2","1","1","1","3","11","8","0","1","5","5","4"],[null,"3024",null,null,"  68",null,null,null,null,null,null,null," 638","   1",null,null,null],["8","  9497","24","105","  5375","6","15","1","1","14","132","22","471343","     1","17","10","20"],[null,3615.92028159099,null,null,922.610672298486,null,null,null,null,null,null,null,938.959197465681,1,null,null,null],[null,3326.36267084169,null,null,1485.39737665874,null,null,null,null,null,null,null,4224.9640483756,0,null,null,null],[0,null,0,0,null,0,0,0,0,0,0,0,null,null,0,0,0],[null,"▇▂▃▃▃",null,null,"▇▁▁▁▁",null,null,null,null,null,null,null,"▇▁▁▁▁","▁▁▇▁▁",null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>data_type<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>min<\/th>\n      <th>median<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>whitespace<\/th>\n      <th>hist<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,9,10,11]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 </div>
@@ -2678,7 +2391,7 @@ Metadata for search engines
 <script type="application/ld+json">
 {
   "name": "results",
-  "datePublished": "2021-06-21",
+  "datePublished": "2021-06-24",
   "description": "The dataset has N=71025 rows and 17 columns.\n71025 rows have no missing values on any column.\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name                |label | n_missing|\n|:-------------------|:-----|---------:|\n|PSA_ID              |NA    |         0|\n|SEED                |NA    |         0|\n|datetime            |NA    |         0|\n|logfile             |NA    |         0|\n|subject_nr          |NA    |         0|\n|task_order          |NA    |         0|\n|List                |NA    |         0|\n|Match               |NA    |         0|\n|Orientation         |NA    |         0|\n|PList               |NA    |         0|\n|Probe               |NA    |         0|\n|Target              |NA    |         0|\n|response_time       |NA    |         0|\n|correct             |NA    |         0|\n|opensesame_codename |NA    |         0|\n|opensesame_version  |NA    |         0|\n|Language            |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).",
   "keywords": ["PSA_ID", "SEED", "datetime", "logfile", "subject_nr", "task_order", "List", "Match", "Orientation", "PList", "Probe", "Target", "response_time", "correct", "opensesame_codename", "opensesame_version", "Language"],
   "@context": "http://schema.org/",
@@ -2762,7 +2475,7 @@ JSON-LD metadata
 <p>The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;results&quot;</span><span class="fu">,</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;datePublished&quot;</span><span class="fu">:</span> <span class="st">&quot;2021-06-21&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;datePublished&quot;</span><span class="fu">:</span> <span class="st">&quot;2021-06-24&quot;</span><span class="fu">,</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;The dataset has N=71025 rows and 17 columns.</span><span class="ch">\n</span><span class="st">71025 rows have no missing values on any column.</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name                |label | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------------|:-----|---------:|</span><span class="ch">\n</span><span class="st">|PSA_ID              |NA    |         0|</span><span class="ch">\n</span><span class="st">|SEED                |NA    |         0|</span><span class="ch">\n</span><span class="st">|datetime            |NA    |         0|</span><span class="ch">\n</span><span class="st">|logfile             |NA    |         0|</span><span class="ch">\n</span><span class="st">|subject_nr          |NA    |         0|</span><span class="ch">\n</span><span class="st">|task_order          |NA    |         0|</span><span class="ch">\n</span><span class="st">|List                |NA    |         0|</span><span class="ch">\n</span><span class="st">|Match               |NA    |         0|</span><span class="ch">\n</span><span class="st">|Orientation         |NA    |         0|</span><span class="ch">\n</span><span class="st">|PList               |NA    |         0|</span><span class="ch">\n</span><span class="st">|Probe               |NA    |         0|</span><span class="ch">\n</span><span class="st">|Target              |NA    |         0|</span><span class="ch">\n</span><span class="st">|response_time       |NA    |         0|</span><span class="ch">\n</span><span class="st">|correct             |NA    |         0|</span><span class="ch">\n</span><span class="st">|opensesame_codename |NA    |         0|</span><span class="ch">\n</span><span class="st">|opensesame_version  |NA    |         0|</span><span class="ch">\n</span><span class="st">|Language            |NA    |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).&quot;</span><span class="fu">,</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;keywords&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;PSA_ID&quot;</span><span class="ot">,</span> <span class="st">&quot;SEED&quot;</span><span class="ot">,</span> <span class="st">&quot;datetime&quot;</span><span class="ot">,</span> <span class="st">&quot;logfile&quot;</span><span class="ot">,</span> <span class="st">&quot;subject_nr&quot;</span><span class="ot">,</span> <span class="st">&quot;task_order&quot;</span><span class="ot">,</span> <span class="st">&quot;List&quot;</span><span class="ot">,</span> <span class="st">&quot;Match&quot;</span><span class="ot">,</span> <span class="st">&quot;Orientation&quot;</span><span class="ot">,</span> <span class="st">&quot;PList&quot;</span><span class="ot">,</span> <span class="st">&quot;Probe&quot;</span><span class="ot">,</span> <span class="st">&quot;Target&quot;</span><span class="ot">,</span> <span class="st">&quot;response_time&quot;</span><span class="ot">,</span> <span class="st">&quot;correct&quot;</span><span class="ot">,</span> <span class="st">&quot;opensesame_codename&quot;</span><span class="ot">,</span> <span class="st">&quot;opensesame_version&quot;</span><span class="ot">,</span> <span class="st">&quot;Language&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;@context&quot;</span><span class="fu">:</span> <span class="st">&quot;http://schema.org/&quot;</span><span class="fu">,</span></span>
@@ -2881,7 +2594,7 @@ Metadata for search engines
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <ul>
-<li><strong>Date published</strong>: 2021-06-21</li>
+<li><strong>Date published</strong>: 2021-06-24</li>
 </ul>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2972,300 +2685,8 @@ Metadata for search engines
 </div>
 <h2 id="codebook-table-1">Codebook table</h2>
 <div class="layout-chunk" data-layout="l-body">
-<table style="width:100%;">
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 7%" />
-<col style="width: 4%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 20%" />
-<col style="width: 3%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: left;">data_type</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">n_unique</th>
-<th style="text-align: right;">empty</th>
-<th style="text-align: left;">min</th>
-<th style="text-align: left;">median</th>
-<th style="text-align: left;">max</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
-<th style="text-align: right;">whitespace</th>
-<th style="text-align: left;">hist</th>
-<th style="text-align: left;">label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="#PSA_ID">PSA_ID</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#SEED">SEED</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">2856</td>
-<td style="text-align: left;">9497</td>
-<td style="text-align: right;">3487.6104</td>
-<td style="text-align: right;">3342.1881</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2583&gt;&lt;U+2582&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#datetime">datetime</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2061</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">24</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#logfile">logfile</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3281</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">105</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#subject_nr">subject_nr</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">73</td>
-<td style="text-align: left;">5375</td>
-<td style="text-align: right;">980.4521</td>
-<td style="text-align: right;">1516.8004</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#PPList">PPList</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">12</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Orientation1">Orientation1</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#Orientation2">Orientation2</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Identical">Identical</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#Picture1">Picture1</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">22</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#Picture2">Picture2</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">48</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">22</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#response_time">response_time</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">589</td>
-<td style="text-align: left;">1995</td>
-<td style="text-align: right;">616.8791</td>
-<td style="text-align: right;">154.4775</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2581&gt;&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#correct">correct</a></td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">1.0000</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#opensesame_codename">opensesame_codename</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">17</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="#opensesame_version">opensesame_version</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="#Language">Language</a></td>
-<td style="text-align: left;">character</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">20</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-</tbody>
-</table>
+<div id="htmlwidget-f2d46bdf33976db6adc4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f2d46bdf33976db6adc4">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"2\" data-max=\"3281\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"3487.61039899136\" data-scale=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"3342.18814642724\" data-scale=\"13\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#PSA_ID\">PSA_ID<\/a>","<a href=\"#SEED\">SEED<\/a>","<a href=\"#datetime\">datetime<\/a>","<a href=\"#logfile\">logfile<\/a>","<a href=\"#subject_nr\">subject_nr<\/a>","<a href=\"#PPList\">PPList<\/a>","<a href=\"#Orientation1\">Orientation1<\/a>","<a href=\"#Orientation2\">Orientation2<\/a>","<a href=\"#Identical\">Identical<\/a>","<a href=\"#Picture1\">Picture1<\/a>","<a href=\"#Picture2\">Picture2<\/a>","<a href=\"#response_time\">response_time<\/a>","<a href=\"#correct\">correct<\/a>","<a href=\"#opensesame_codename\">opensesame_codename<\/a>","<a href=\"#opensesame_version\">opensesame_version<\/a>","<a href=\"#Language\">Language<\/a>"],["character","numeric","character","character","numeric","character","character","character","character","character","character","numeric","numeric","character","character","character"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[50,null,2061,3281,null,8,2,2,2,48,48,null,null,3,6,18],[0,null,0,0,null,0,0,0,0,0,0,null,null,0,0,0],["7","1","10","8","1","1","1","1","1","8","8","7","1","5","5","4"],[null,"2856",null,null,"  73",null,null,null,null,null,null," 589","   1",null,null,null],["8","9497","24","105","5375","12","1","1","1","22","22","1995","   1","17","6","20"],[null,3487.61039899136,null,null,980.452089516955,null,null,null,null,null,null,616.879146857188,1,null,null,null],[null,3342.18814642724,null,null,1516.80037974008,null,null,null,null,null,null,154.477483523968,0,null,null,null],[0,null,0,0,null,0,0,0,0,0,0,null,null,0,0,0],[null,"▇▂▃▃▂",null,null,"▇▁▁▁▁",null,null,null,null,null,null,"▁▇▁▁▁","▁▁▇▁▁",null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>data_type<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>min<\/th>\n      <th>median<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>whitespace<\/th>\n      <th>hist<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,9,10,11]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 </div>
@@ -3276,7 +2697,7 @@ Metadata for search engines
 <script type="application/ld+json">
 {
   "name": "results",
-  "datePublished": "2021-06-21",
+  "datePublished": "2021-06-24",
   "description": "The dataset has N=76142 rows and 16 columns.\n76142 rows have no missing values on any column.\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name                |label | n_missing|\n|:-------------------|:-----|---------:|\n|PSA_ID              |NA    |         0|\n|SEED                |NA    |         0|\n|datetime            |NA    |         0|\n|logfile             |NA    |         0|\n|subject_nr          |NA    |         0|\n|PPList              |NA    |         0|\n|Orientation1        |NA    |         0|\n|Orientation2        |NA    |         0|\n|Identical           |NA    |         0|\n|Picture1            |NA    |         0|\n|Picture2            |NA    |         0|\n|response_time       |NA    |         0|\n|correct             |NA    |         0|\n|opensesame_codename |NA    |         0|\n|opensesame_version  |NA    |         0|\n|Language            |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).",
   "keywords": ["PSA_ID", "SEED", "datetime", "logfile", "subject_nr", "PPList", "Orientation1", "Orientation2", "Identical", "Picture1", "Picture2", "response_time", "correct", "opensesame_codename", "opensesame_version", "Language"],
   "@context": "http://schema.org/",
@@ -3356,7 +2777,7 @@ JSON-LD metadata
 <p>The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;results&quot;</span><span class="fu">,</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;datePublished&quot;</span><span class="fu">:</span> <span class="st">&quot;2021-06-21&quot;</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;datePublished&quot;</span><span class="fu">:</span> <span class="st">&quot;2021-06-24&quot;</span><span class="fu">,</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;The dataset has N=76142 rows and 16 columns.</span><span class="ch">\n</span><span class="st">76142 rows have no missing values on any column.</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name                |label | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------------|:-----|---------:|</span><span class="ch">\n</span><span class="st">|PSA_ID              |NA    |         0|</span><span class="ch">\n</span><span class="st">|SEED                |NA    |         0|</span><span class="ch">\n</span><span class="st">|datetime            |NA    |         0|</span><span class="ch">\n</span><span class="st">|logfile             |NA    |         0|</span><span class="ch">\n</span><span class="st">|subject_nr          |NA    |         0|</span><span class="ch">\n</span><span class="st">|PPList              |NA    |         0|</span><span class="ch">\n</span><span class="st">|Orientation1        |NA    |         0|</span><span class="ch">\n</span><span class="st">|Orientation2        |NA    |         0|</span><span class="ch">\n</span><span class="st">|Identical           |NA    |         0|</span><span class="ch">\n</span><span class="st">|Picture1            |NA    |         0|</span><span class="ch">\n</span><span class="st">|Picture2            |NA    |         0|</span><span class="ch">\n</span><span class="st">|response_time       |NA    |         0|</span><span class="ch">\n</span><span class="st">|correct             |NA    |         0|</span><span class="ch">\n</span><span class="st">|opensesame_codename |NA    |         0|</span><span class="ch">\n</span><span class="st">|opensesame_version  |NA    |         0|</span><span class="ch">\n</span><span class="st">|Language            |NA    |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).&quot;</span><span class="fu">,</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;keywords&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;PSA_ID&quot;</span><span class="ot">,</span> <span class="st">&quot;SEED&quot;</span><span class="ot">,</span> <span class="st">&quot;datetime&quot;</span><span class="ot">,</span> <span class="st">&quot;logfile&quot;</span><span class="ot">,</span> <span class="st">&quot;subject_nr&quot;</span><span class="ot">,</span> <span class="st">&quot;PPList&quot;</span><span class="ot">,</span> <span class="st">&quot;Orientation1&quot;</span><span class="ot">,</span> <span class="st">&quot;Orientation2&quot;</span><span class="ot">,</span> <span class="st">&quot;Identical&quot;</span><span class="ot">,</span> <span class="st">&quot;Picture1&quot;</span><span class="ot">,</span> <span class="st">&quot;Picture2&quot;</span><span class="ot">,</span> <span class="st">&quot;response_time&quot;</span><span class="ot">,</span> <span class="st">&quot;correct&quot;</span><span class="ot">,</span> <span class="st">&quot;opensesame_codename&quot;</span><span class="ot">,</span> <span class="st">&quot;opensesame_version&quot;</span><span class="ot">,</span> <span class="st">&quot;Language&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;@context&quot;</span><span class="fu">:</span> <span class="st">&quot;http://schema.org/&quot;</span><span class="fu">,</span></span>

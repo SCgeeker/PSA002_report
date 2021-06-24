@@ -17,3 +17,4 @@ Matrix
 lme4
 mixedpower
 simr
+lmerTest

@@ -49,7 +49,7 @@ SP_V_en <- SP_V_tidy_data %>% filter(PSA_ID %in% selected_LAB)
 
 `r length(selected_LAB)` English laboratories matched our criterion. The descriptive summary is as the below table.
 
-```{r summary_table, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE, fig.cap="Average reaction time (ms) and accuracy percentil in brackets."}
+```{r summary_table, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE, fig.cap="Summarize average reaction time (ms) and accuracy percentil in brackets by teams."}
 SP_V_en %>%
   group_by(PSA_ID, subject_nr, Match) %>%
   summarise(subject_M = mean(response_time), subject_ACC = n()/12) %>%
@@ -68,7 +68,7 @@ SP_V_en %>%
 
 Based on the definition of orientation effect: the elapsed response time between mismatching and matching, the descriptive summary showed the inconsistent results among the laboratories.
 
-**Step 3 Analyze Orientation Effect**
+**Step 3 Analyze Orientation Effect(English data)**
 
 Now we evaluate the orientation effect in terms of the mixed-effect model. In this model we considered "Match" as the only one fixed effect, it showed an negative orientation effect.
 
@@ -76,8 +76,9 @@ Now we evaluate the orientation effect in terms of the mixed-effect model. In th
 ## Combine Lab ID and subject ID in the data set
 SP_V_en_mutate <- SP_V_en %>% mutate(Subject = paste0(PSA_ID,"_",subject_nr))
 ## Run linear model
-EN_full_model <- lmer(response_time ~ Match + (1|subject_nr) + (1|Target),
+EN_full_model <- lmer(response_time ~ Match + (1|Subject) + (1|Target),
                  data = SP_V_en_mutate)
 
 summary(EN_full_model, corr = F)
 ```
+
