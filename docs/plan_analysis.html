@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -85,7 +86,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Orientnation Effects: Global investigations: General analysis on English data</title>
+  <title>Orientnation Effects: Global investigations: Planned Analysis</title>
 
   <meta property="description" itemprop="description" content="Example analysis on English data from 10 teams."/>
 
@@ -93,7 +94,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Orientnation Effects: Global investigations: General analysis on English data"/>
+  <meta property="og:title" content="Orientnation Effects: Global investigations: Planned Analysis"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Example analysis on English data from 10 teams."/>
   <meta property="og:locale" content="en_US"/>
@@ -101,14 +102,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Orientnation Effects: Global investigations: General analysis on English data"/>
+  <meta property="twitter:title" content="Orientnation Effects: Global investigations: Planned Analysis"/>
   <meta property="twitter:description" content="Example analysis on English data from 10 teams."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["General analysis on English data"]},{"type":"character","attributes":{},"value":["Example analysis on English data from 10 teams.\n"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Planned Analysis"]},{"type":"character","attributes":{},"value":["Example analysis on English data from 10 teams.\n"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2087,7 +2088,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-  <link href="site_libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2135,7 +2135,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"General analysis on English data","description":"Example analysis on English data from 10 teams.","authors":[]}
+{"title":"Planned Analysis","description":"Example analysis on English data from 10 teams.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2192,7 +2192,7 @@ Replication Plan
 </button>
 <div class="nav-dropdown-content">
 <a href="plan_ins.html">Instruction</a>
-<a href="plan_analysis.html">General Analysis</a>
+<a href="plan_analysis.html">Planned Analysis</a>
 <hr/>
 <a href="plan_simulation01.html">Scenario: platforms issue</a>
 <span class="nav-dropdown-header">Scenario: TBA</span>
@@ -2211,7 +2211,7 @@ Replication Plan
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>General analysis on English data</h1>
+<h1>Planned Analysis</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>Example analysis on English data from 10 teams.</p></p>
@@ -2219,105 +2219,21 @@ Replication Plan
 
 
 <div class="d-article">
-<p>We at first analyzed the orientation effects from the English teams who collected more than 50 participants. You can directly download the <a href="../includes/files/SP_V_tidy.csv">tidy data</a> or access the complete code from the project <a href="https://osf.io/e428p/">OSF</a>.</p>
-<p><strong>Step 1 Allocated data set</strong></p>
-<p>We selected the laboratories collected more than 50 participants.</p>
-<p><strong>Step 2 Descriptive Summary</strong></p>
-<p>10 English laboratories matched our criterion. The descriptive summary is as the below table.</p>
-<div class="layout-chunk" data-layout="l-body">
-<template id="1f9e94c4-2908-4838-b0cc-8e6175743af0"><style>
-.tabwid table{
-  border-collapse:collapse;
-  line-height:1;
-  margin-left:auto;
-  margin-right:auto;
-  border-width: 0;
-  display: table;
-  margin-top: 1.275em;
-  margin-bottom: 1.275em;
-  border-spacing: 0;
-  border-color: transparent;
-}
-.tabwid_left table{
-  margin-left:0;
-}
-.tabwid_right table{
-  margin-right:0;
-}
-.tabwid td {
-    padding: 0;
-}
-.tabwid a {
-  text-decoration: none;
-}
-.tabwid thead {
-    background-color: transparent;
-}
-.tabwid tfoot {
-    background-color: transparent;
-}
-.tabwid table tr {
-background-color: transparent;
-}
-</style><div class="tabwid"><style>.cl-fbd4d670{border-collapse:collapse;}.cl-fbcce064{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-fbcd06ca{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fbcd06cb{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-fbcd54a4{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbcd54a5{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbcd54a6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbcd54a7{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbcd54a8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbcd54a9{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-fbd4d670'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a9"><p class="cl-fbcd06ca"><span class="cl-fbcce064">PSA Lab</span></p></td><td class="cl-fbcd54a9"><p class="cl-fbcd06ca"><span class="cl-fbcce064">Mismatching</span></p></td><td class="cl-fbcd54a9"><p class="cl-fbcd06ca"><span class="cl-fbcce064">Matching</span></p></td><td class="cl-fbcd54a8"><p class="cl-fbcd06cb"><span class="cl-fbcce064">Orientation Effect</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">AUS_091</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1140(82.9)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1302(84.63)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-161.721697</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">CAN_020</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">665(91.84)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">659(94.07)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">5.515568</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">GBR_005</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">650(90.71)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">657(93.11)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-7.012275</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">GBR_014</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">587(95.33)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">578(96.67)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">8.976727</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">MYS_004</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">679(93.25)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">687(93.67)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-7.727024</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">NZL_005</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1345(84.28)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1284(84.34)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">60.270503</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">PSA_002</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1020(84.81)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1427(86.42)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-406.128210</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">USA_011</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">962(83.05)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">1426(85.06)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-463.567709</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">USA_032</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">638(94.17)</span></p></td><td class="cl-fbcd54a4"><p class="cl-fbcd06ca"><span class="cl-fbcce064">629(93.83)</span></p></td><td class="cl-fbcd54a5"><p class="cl-fbcd06cb"><span class="cl-fbcce064">9.426020</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-fbcd54a6"><p class="cl-fbcd06ca"><span class="cl-fbcce064">USA_033</span></p></td><td class="cl-fbcd54a6"><p class="cl-fbcd06ca"><span class="cl-fbcce064">847(94.29)</span></p></td><td class="cl-fbcd54a6"><p class="cl-fbcd06ca"><span class="cl-fbcce064">961(95.12)</span></p></td><td class="cl-fbcd54a7"><p class="cl-fbcd06cb"><span class="cl-fbcce064">-114.303894</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="9fb83ae3-ae8c-4866-b0fc-5fd9eb49f375"></div>
-<script>
-var dest = document.getElementById("9fb83ae3-ae8c-4866-b0fc-5fd9eb49f375");
-var template = document.getElementById("1f9e94c4-2908-4838-b0cc-8e6175743af0");
-var caption = template.content.querySelector("caption");
-if(caption) {
-  caption.style.cssText = "display:block;text-align:center;";
-  var newcapt = document.createElement("p");
-  newcapt.appendChild(caption)
-  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
-}
-var fantome = dest.attachShadow({mode: 'open'});
-var templateContent = template.content;
-fantome.appendChild(templateContent);
-</script>
-
-</div>
-<p>Based on the definition of orientation effect: the elapsed response time between mismatching and matching, the descriptive summary showed the inconsistent results among the laboratories.</p>
-<p><strong>Step 3 Analyze Orientation Effect(English data)</strong></p>
-<p>Now we evaluate the orientation effect in terms of the mixed-effect model. In this model we considered “Match” as the only one fixed effect, it showed an negative orientation effect.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## Combine Lab ID and subject ID in the data set</span>
-<span class='va'>SP_V_en_mutate</span> <span class='op'>&lt;-</span> <span class='va'>SP_V_en</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>Subject <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>PSA_ID</span>,<span class='st'>"_"</span>,<span class='va'>subject_nr</span><span class='op'>)</span><span class='op'>)</span>
-<span class='co'>## Run linear model</span>
-<span class='va'>EN_full_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span><span class='op'>(</span><span class='va'>response_time</span> <span class='op'>~</span> <span class='va'>Match</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>|</span><span class='va'>Subject</span><span class='op'>)</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>|</span><span class='va'>Target</span><span class='op'>)</span>,
-                 data <span class='op'>=</span> <span class='va'>SP_V_en_mutate</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>EN_full_model</span>, corr <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
-lmerModLmerTest]
-Formula: response_time ~ Match + (1 | Subject) + (1 | Target)
-   Data: SP_V_en_mutate
-
-REML criterion at convergence: 421329.7
-
-Scaled residuals: 
-   Min     1Q Median     3Q    Max 
--0.404 -0.093 -0.070 -0.033 85.106 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- Subject  (Intercept)   101589  318.7  
- Target   (Intercept)    24355  156.1  
- Residual             30320782 5506.4  
-Number of obs: 20995, groups:  Subject, 991; Target, 48
-
-Fixed effects:
-            Estimate Std. Error       df t value Pr(&gt;|t|)    
-(Intercept)   985.33      59.31   144.07  16.613   &lt;2e-16 ***
-MatchY         48.48      76.03 20122.23   0.638    0.524    
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>(The analysis is under management. We will update this page at any time.)</p>
+<p>According to the <a href="prereg.html">preregistered plan</a>, we conducted the intra-lab and inter-lab analysis as the below arrangements.</p>
+<h2 id="intra-lab-analysis-during-data-collection">Intra-lab analysis during data collection</h2>
+<p>We managed the <a href="https://scgeeker.github.io/PSA002_log_site/index.html">progress site</a> and accumulated the sequential analysis by team.</p>
+<h2 id="inter-lab-analysis-after-data-collection">Inter-lab analysis after data collection</h2>
+<ol type="1">
+<li><p>Identify the outliers in each data set.</p></li>
+<li><p>Meta analysis of orientation effects across lab</p></li>
+<li><p>Estimate a general orientation effect</p></li>
+</ol>
+<p>“In the mixed-effect model, we treat the laboratory and language as random effects and the match advantage of object orientations as a fixed effect.”</p>
+<ol start="4" type="1">
+<li>Analysis on imagery scores</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

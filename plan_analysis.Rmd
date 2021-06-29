@@ -1,5 +1,5 @@
 ---
-title: "General analysis on English data"
+title: "Planned Analysis"
 description: |
  Example analysis on English data from 10 teams.
 #date: "`r Sys.Date()`"
@@ -22,63 +22,25 @@ library(lme4)
 # Import multiple-bytes string in English system
 Sys.setlocale("LC_ALL","English") 
 
-# Import tidy SP verification data
-SP_V_tidy_data <- read_csv("../EXPDATA/3_analysis/SP_V_tidy.csv")
 ```
 
-We at first analyzed the orientation effects from the English teams who collected more than 50 participants. You can directly download the [tidy data](../includes/files/SP_V_tidy.csv) or access the complete code from the project [OSF](https://osf.io/e428p/). 
 
+(The analysis is under management. We will update this page at any time.)
 
-**Step 1 Allocated data set**
+According to the [preregistered plan](prereg.html), we conducted the intra-lab and inter-lab analysis as the below arrangements.
 
-We selected the laboratories collected more than 50 participants.
+## Intra-lab analysis during data collection
 
-```{r filter_en_lab, message=FALSE, warning=FALSE, include=FALSE}
-selected_LAB <- SP_V_tidy_data %>% filter(Language == "English") %>%
-  group_by(PSA_ID, subject_nr) %>%
-  summarise(trials = n()) %>%
-  group_by(PSA_ID) %>%
-  summarise(N = n()) %>%
-  filter(N >= 50) %>%
-  pull(PSA_ID)
+We managed the [progress site](https://scgeeker.github.io/PSA002_log_site/index.html) and accumulated the sequential analysis by team.
 
-SP_V_en <- SP_V_tidy_data %>% filter(PSA_ID %in% selected_LAB) 
-```
+## Inter-lab analysis after data collection 
 
-**Step 2 Descriptive Summary**
+1. Identify the outliers in each data set.
 
-`r length(selected_LAB)` English laboratories matched our criterion. The descriptive summary is as the below table.
+2. Meta analysis of orientation effects across lab
 
-```{r summary_table, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE, fig.cap="Summarize average reaction time (ms) and accuracy percentil in brackets by teams."}
-SP_V_en %>%
-  group_by(PSA_ID, subject_nr, Match) %>%
-  summarise(subject_M = mean(response_time), subject_ACC = n()/12) %>%
-  group_by(PSA_ID, Match) %>%
-  summarise(mean_RT = mean(subject_M), mean_ACC = mean(subject_ACC)) %>%
-  pivot_wider(names_from = Match, values_from = c(mean_RT, mean_ACC)) %>%
-  mutate(Effect = (mean_RT_N - mean_RT_Y) ) %>%
-  transmute( Mismatch_stat = paste0(round(mean_RT_N),"(",round(mean_ACC_N*100,2),")"),
-             Match_stat = paste0(round(mean_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
-             Effect = Effect) %>%
-  flextable() %>% 
-#  add_header_row(values = c("","","Accuracy(%)"),
-#                 colwidths = c(1,1,1)) %>%
-  set_header_labels(PSA_ID = "PSA Lab", Mismatch_stat ="Mismatching", Match_stat = "Matching", Effect = "Orientation Effect")
-```
+3. Estimate a general orientation effect 
 
-Based on the definition of orientation effect: the elapsed response time between mismatching and matching, the descriptive summary showed the inconsistent results among the laboratories.
+"In the mixed-effect model, we treat the laboratory and language as random effects and the match advantage of object orientations as a fixed effect."
 
-**Step 3 Analyze Orientation Effect(English data)**
-
-Now we evaluate the orientation effect in terms of the mixed-effect model. In this model we considered "Match" as the only one fixed effect, it showed an negative orientation effect.
-
-```{r real_lmer, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE, cache.path="./catch/"}
-## Combine Lab ID and subject ID in the data set
-SP_V_en_mutate <- SP_V_en %>% mutate(Subject = paste0(PSA_ID,"_",subject_nr))
-## Run linear model
-EN_full_model <- lmer(response_time ~ Match + (1|Subject) + (1|Target),
-                 data = SP_V_en_mutate)
-
-summary(EN_full_model, corr = F)
-```
-
+4. Analysis on imagery scores

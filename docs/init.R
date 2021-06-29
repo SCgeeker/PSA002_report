@@ -22,8 +22,21 @@ lab_fin <- ##dirname(getwd()) %>%
   dir(path = "../EXPDATA/2_seq_web/",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "lab_fin.csv")  %>%
   read_csv()
 
+
+# Load meta data of in site data: age, female numbers
+
+insite_meta <- dir(path = "../EXPDATA/",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "insite_meta.csv") %>%
+  read_csv() 
+
+# Load and summary meta data of online data: age, female numbers, language proficiency
 osweb_meta <- dir(path = "../EXPDATA/",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "jatos_meta.csv") %>%
-  read_csv()
+  read_csv() %>%
+  mutate(gender = ifelse(gender==1,"FEMALE",ifelse(gender==2,"MALE","OTHER"))) %>%
+  mutate(birth_year = as.numeric(birth_year)) %>%
+  mutate(year = ifelse(birth_year > 21 & !is.na(birth_year), 1900 + birth_year, 2000 + birth_year)) %>%
+  mutate(age = ifelse(!is.na(year),2021-year,NA)) %>%
+  group_by(Batch) %>%
+  summarise(N = n(), Female_N = sum(gender=="FEMALE",na.rm = TRUE), Age = mean(age, na.rm=TRUE), Proficiency = mean(lang_prof))
 
 # Load raw data 
 ## Isolate the data before 2021, in site data

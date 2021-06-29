@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### in site data
 
-Between September 2019 and March 2020, the data were collected from the registered teams' affiliations. All the teams followed the [data collection protocol](https://osf.io/xrg84/). This data collection suspended at March 2020 because of the global pandemic outbreak. 
+Between September 2019 and March 2020, the data were collected from the registered teams' affiliations. All the teams followed the [data collection protocol](https://osf.io/xrg84/). We collected the participants' gender and age on a splited Qualtrics form. Total `r sum(insite_meta$N)` participants (`r sum(insite_meta$Female_N)` females; averagely `r round(mean(insite_meta$Age),2)` years old) completed the study. This data collection suspended at March 2020 because of the global pandemic outbreak. 
 
 ```{r count_site, echo=FALSE, message=FALSE, warning=FALSE}
 sum_site <- (SP_V_subj_site %>% 
@@ -38,11 +38,11 @@ sum_site %>%
 ```
 
 
-`r dim(subset(sum_site, SP_N >= 50))[1]` teams completed the data collection or reached the minimal sample size before the global pandemic outbreak. Across the site data, `r sum(sum_site$SP_N)` participants finished sentence-picture verification task; `r sum(sum_site$PP_N)` participants finished picture-picture verification task. Some PP data files were successfully imported after I decreased the criterion of file size. `r sum(sum_site$SP_N) - sum(sum_site$PP_N)` participants' data files were lost because the experimenters did not upload the files or submitted the wrong files.
+`r dim(subset(sum_site, SP_N >= 50))[1]` teams completed the data collection or reached the minimal sample size before the global pandemic outbreak. Across the site data, `r sum(sum_site$SP_N)` participants finished sentence-picture verification task and passed the preregistered exclusion criterion (accuracy percentile > 70%); `r sum(sum_site$PP_N)` participants finished picture-picture verification task. Some PP data files were successfully imported after I decreased the criterion of file size. `r sum(sum_site$SP_N) - sum(sum_site$PP_N)` participants' data files were lost because the experimenters did not upload the files or submitted the wrong files.
 
 ### osweb data
 
-Between January 2021 and June 2021, the data collection resumed after we migrated the in-site scripts to [JATOS](https://www.jatos.org/) website. The rest of teams distributed the corresponding links to their participants. 
+Between January 2021 and June 2021, the data collection resumed after we migrated the in-site scripts to [JATOS](https://www.jatos.org/) website. The rest of teams distributed the corresponding links to their participants. Total `r sum(osweb_meta$N)` participants (`r sum(osweb_meta$Female_N)` females; averagely `r round(mean(osweb_meta$Age,na.rm=TRUE),2)` years old) completed the study in each site.
 
 ```{r count_jatos, echo=FALSE, message=FALSE, warning=FALSE}
 sum_osweb <- (SP_V_subj_osweb %>% 
@@ -63,7 +63,7 @@ sum_osweb %>%
 ```
 
 
-The osweb teams collected the data from the languages as following: `r unique(sum_osweb$Language)`. Across the osweb data, `r sum(sum_osweb$SP_N)` participants finished sentence-picture verification task; `r sum(sum_osweb$PP_N)` participants finished picture-picture verification task.
+The osweb teams collected the data from the languages as following: `r unique(sum_osweb$Language)`. Across the osweb data, `r sum(sum_osweb$SP_N)` participants finished sentence-picture verification task and passed the preregistered exclusion criterion (accuracy percentile > 70%); `r sum(sum_osweb$PP_N)` participants finished picture-picture verification task. We excluded 1 participant from `USA_033` because this participant did not complete the picture-picture verification.
 
 According to our preregistered plan, each laboratory has to collect at least 50 participants. Some laboratories did not reach the minimal criterion because of the following reasons: (1)their works were interrupted by the pandemic situation; (2)the participants performed worse through the online study; (3) the laboratories allocated the seats for the foreign participants; (4) A language (e.g., Serbian) has a various of scripts.
 
@@ -89,3 +89,4 @@ sum_all %>%
 
 
 At the end of data collection, `r sum(sum_all$LAB_N)` laboratories participated in this project. `r sum(sum_site$SP_N <50)` laboratories collected the minimal samples. Finally we collected the data from `r length(unique(sum_all$Language))` languages.
+

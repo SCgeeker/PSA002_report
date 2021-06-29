@@ -44,7 +44,7 @@ navbar:
       menu:
         - text: "Instruction"
           href: plan_ins.html
-        - text: "General Analysis"
+        - text: "Planned Analysis"
           href: plan_analysis.html
         - text: "---"
         - text: "Scenario: platforms issue"
