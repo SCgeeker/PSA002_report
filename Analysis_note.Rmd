@@ -1,0 +1,717 @@
+---
+title: 'Analysis Note: Object Orientation across languages'
+author: "Sau-Chin Chen"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 3
+#bibliography: Orientation.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(data.table)
+library(lubridate)
+library(magrittr)
+library(flextable)
+
+#setwd(here::here("EXPDATA/3_analysis/") )
+
+# Import multiple-bytes string in English system
+Sys.setlocale("LC_ALL","English") 
+```
+
+All available raw data are from three files: 
+
+- `all_rawdata_SP_V.csv` the sentence-picture verification responses. 
+- `all_rawdata_SP_M.csv` the responses of memory trials. 
+- `all_rawdata_PP.csv` the picture-picture verification responses. 
+
+### Import raw data and lab information
+
+```{r load_info, message=FALSE, warning=FALSE, include=FALSE}
+# Load lab information
+lab_info <- ##dirname(getwd()) %>%
+  dir(path = "../2_seq_web/",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "Lab_info.csv")  %>%
+  read_csv()
+
+lab_fin <- ##dirname(getwd()) %>%
+  dir(path = "../2_seq_web/",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "lab_fin.csv")  %>%
+  read_csv()
+
+# Load meta data of in site data: age, female numbers
+
+insite_meta <- dir(path = "../",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "insite_meta.csv") %>%
+  read_csv() 
+
+# Load and summary meta data of online data: age, female numbers, language proficiency
+osweb_meta <- dir(path = "../",full.names = TRUE, recursive = TRUE, include.dirs = TRUE, pattern = "jatos_meta.csv") %>%
+  read_csv() %>%
+  mutate(gender = ifelse(gender==1,"FEMALE",ifelse(gender==2,"MALE","OTHER"))) %>%
+  mutate(birth_year = as.numeric(birth_year)) %>%
+  mutate(year = ifelse(birth_year > 21 & !is.na(birth_year), 1900 + birth_year, 2000 + birth_year)) %>%
+  mutate(age = ifelse(!is.na(year),2021-year,NA)) %>%
+  group_by(Batch) %>%
+  summarise(N = n(), Female_N = sum(gender=="FEMALE",na.rm = TRUE), Age = mean(age, na.rm=TRUE), Proficiency = mean(lang_prof))
+
+```
+
+In the site studies, we collected the participants' gender and age on a splited Qualtrics form. Total `r sum(insite_meta$N)` participants (`r sum(insite_meta$Female_N)` females; averagely `r round(mean(insite_meta$Age),2)` years old) completed the study in each site.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+insite_meta[,-1] %>% rmarkdown::paged_table(options = list(rows.print = 10))
+```
+
+Considering the online circumstance, we collected the participants' gender and age at the end of OSWeb script. Before the study we also showed the verbal instruction to confirm the participants' langauge proficiency. Total `r sum(osweb_meta$N)` participants (`r sum(osweb_meta$Female_N)` females; averagely `r round(mean(osweb_meta$Age,na.rm=TRUE),2)` years old) completed the study in each site.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+osweb_meta %>% rmarkdown::paged_table(options = list(rows.print = 10))
+```
+
+
+
+```{r all_data, echo=TRUE, message=FALSE, warning=FALSE, include=FALSE}
+# Load raw data 
+## Isolate the data before 2021, in site data
+# Filter SP verification responses
+SP_V <-  dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_SP_V",   ## include in-site and internet data
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv() %>%
+      subset(correct == 1 & Match != "F") %>%  ## Exclude the incorrect responses and filler trials
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() ## Merge the language aspects
+
+
+# Load PP verification responses
+PP <- dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_PP", 
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv() %>%
+      subset(correct == 1 & Identical != "F")  %>%  ## Exclude the incorrect responses and filler trials
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() ## Merge the language aspects
+
+# Load SP memory responses
+SP_M <- dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_SP_M", 
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv()  %>%    
+      subset(correct == 1) %>%  ## Exclude the incorrect responses and filler trials
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() ## Merge the language aspects
+```
+
+### Avalability Summary: in site data
+  
+```{r site_SP_V, message=FALSE, warning=FALSE, include=FALSE}
+## Exclude the participants who had a accuracy lower than the preregistered exclusion criterion (70%)
+
+## Summarize the valid participants' SP verification data
+SP_V_subj_site <- SP_V %>%
+    filter(opensesame_codename!="osweb") %>%  # exclude jatos data
+    group_by(subject_nr) %>%
+    mutate(acc = n()/24) %>%
+    filter(acc > .7) %>%
+    group_by(Language, PSA_ID, subject_nr, Match) %>%
+    summarise(V_RT = median(response_time), V_Acc = n()/12) 
+
+## Tidy SP V data for mixed linear model
+SP_V_site_tidy <- SP_V %>% 
+  filter(opensesame_codename!="osweb") %>%
+  inner_join(
+select(SP_V_subj_site, Language, PSA_ID, subject_nr),
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "site") ## mark for separated analysis
+
+## Count total participants passed exclusion criterion. 
+#Total_N <- dim(SP_V_subj_tidy)[1]/2
+```
+
+
+```{r site_SP_M, message=FALSE, warning=FALSE, include=FALSE}
+## Tidy SP M data for mixed linear model
+SP_M_site_tidy <- SP_M %>% 
+    filter(opensesame_codename!="osweb") %>%    # exclude jatos data
+    inner_join(
+select(SP_V_subj_site, Language, PSA_ID, subject_nr),
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "site") ## mark for separated analysis
+
+## Summarize the valid participants' SP memory data
+SP_M_subj_site <- SP_M_site_tidy %>%
+  group_by(Language, PSA_ID, subject_nr) %>% 
+  summarise(M_Acc = n()/11)
+```
+
+
+```{r site_PP, message=FALSE, warning=FALSE, include=FALSE}
+## Tidy PP data for mixed linear model
+PP_site_tidy <- PP %>% 
+    filter(opensesame_codename!="osweb") %>%   # exclude jatos data
+    inner_join(
+(select(SP_V_subj_site, Language, PSA_ID, subject_nr) #%>%
+#  bind_cols(logfile_trans = gsub(SP_V_subj_data$logfile, pattern = "_SP_",replacement = "_PP_"))
+ ), ## replace the file name for compatible
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "site") ## mark for separated analysis
+
+
+## Summarize the valid participants' PP verification data
+PP_subj_site <- PP_site_tidy %>%
+#    group_by(subject_nr) %>%
+#    mutate(acc = n()/24) %>%
+#    filter(acc > .7) %>%
+    mutate(Match = (Orientation1 == Orientation2)) %>%
+    group_by(Language, PSA_ID, subject_nr, Match) %>%
+    summarise(P_RT = median(response_time), P_Acc = n()/12) 
+```
+
+
+```{r count_site, echo=FALSE, message=FALSE, warning=FALSE}
+sum_site <- (SP_V_subj_site %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(SP_N = n()/2)) %>%
+left_join(  
+(PP_subj_site %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language","PSA_ID")
+) 
+
+sum_site %>%
+  flextable() %>%
+  set_header_labels(PSA_ID="Lab ID", SP_N = "SP N", PP_N = "PP N") %>%
+  autofit()
+```
+
+
+Among the data in sites, `r sum(sum_site$SP_N)` participants finished sentence-picture verification task and passed the preregistered exclusion criterion (accuracy percentile > 70%); `r sum(sum_site$PP_N)` participants finished picture-picture verification task. Some PP data files were successfully imported after I decreased the criterion of file size. `r sum(sum_site$SP_N) - sum(sum_site$PP_N)` participants' data files were lost because the experimenters did not upload the files or submitted the wrong files.
+
+<!---
+
+Fewer participants finished the picture-picture verification task probably because of the missing files and incorrect coding. 
+
+```
+
+## code for identifiy lost ID
+which(((SP_V_site_tidy %>% filter(PSA_ID == "CAN_020") %>% group_by(subject_nr) %>% summarise(n()) %>% pull(subject_nr)) %in% (PP_site_tidy %>% filter(PSA_ID == "CAN_020") %>% group_by(subject_nr) %>% summarise(n()) %>% pull(subject_nr)) ) == FALSE)
+
+```
+
+##### Revised PP ID and adjusted file size
+
+GBR_043: 30(revised seed)
+MYS_004: 52
+AUT_002: 2
+IND_003: 51, 75
+HUN_001: 1,42
+CHN_005: 48; 30(revised seed)
+SVK_001: 20,21; 81,96(revised seed)
+COL_001: 29
+ECU_001: 8, 52
+THA_001: 4,7,10,12
+TUR_007: 089
+TUR_025: 089,091
+ISR_001: 36,38,98, 124,125, 130, 135, 146 
+USA_173:13 14 15 16 19, 23
+IND_003: 10, 37
+
+##### missed PP files
+
+TWN_001: 31 
+USA_173: 28(wrong file)
+ISR_001: 145(program error) 
+CHN_019: 25
+IND_003: 13  
+NOR_004: 3,4
+TUR_025: 9
+--->
+
+### Avalability Summary: osweb data
+
+```{r online_SP_V, message=FALSE, warning=FALSE, include=FALSE}
+SP_V_osweb <-  dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_SP_V",   ## include in-site and internet data
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv() %>%
+      filter(opensesame_codename=="osweb") %>%   # include jatos data
+      subset(correct == 1 & Match != "F") %>%  ## Exclude the incorrect responses and filler trials
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() %>% ## Merge the language aspects
+    filter(!(PSA_ID == "USA_033" & subject_nr == 39)) ## exclude this participant who had not complete PP
+
+## Summarize the valid participants' SP verification data
+SP_V_subj_osweb <- SP_V_osweb %>%
+    group_by(subject_nr) %>%
+    mutate(acc = n()/24) %>%
+    filter(acc > .7) %>%
+    group_by(Language, PSA_ID, subject_nr, Match) %>%
+    summarise(V_RT = median(response_time), V_Acc = n()/12) 
+
+## Tidy SP V data for mixed linear model
+SP_V_osweb_tidy <- SP_V_osweb %>% inner_join(
+select(SP_V_subj_osweb, Language, PSA_ID, subject_nr),
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "osweb") ## mark for separated analysis
+```
+
+
+```{r online_SP_M, message=FALSE, warning=FALSE, include=FALSE}
+SP_M_osweb <-  dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_SP_M",   ## include in-site and internet data
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv() %>%
+      filter(opensesame_codename=="osweb") %>%   # include jatos data
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() %>% ## Merge the language aspects
+    filter(!(PSA_ID == "USA_033" & subject_nr == 39)) ## exclude this participant who had not complete PP
+
+
+## Tidy SP M data for mixed linear model
+SP_M_osweb_tidy <- SP_M_osweb %>% inner_join(
+select(SP_V_subj_osweb, Language, PSA_ID, subject_nr),
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "osweb") ## mark for separated analysis
+
+## Summarize the valid participants' SP memory data
+SP_M_subj_osweb <- SP_M_osweb_tidy %>%
+  group_by(Language, PSA_ID, subject_nr) %>% 
+  summarise(M_Acc = n()/11)
+```
+
+
+```{r online_PP, message=FALSE, warning=FALSE, include=FALSE}
+PP_osweb <-  dir(path = "../1_raw_data/",
+      pattern = "all_rawdata_PP",   ## include in-site and internet data
+      recursive = TRUE, full.names = TRUE) %>% 
+      read_csv() %>%
+      filter(opensesame_codename=="osweb") %>%   # include jatos data
+      subset(correct == 1 & Identical != "F")  %>%  ## Exclude the incorrect responses and filler trials
+      inner_join(select(lab_info, PSA_ID, Language), by = "PSA_ID") %>%
+    distinct() %>% ## Merge the language aspects
+    filter(!(PSA_ID == "USA_033" & subject_nr == 39)) ## exclude this participant who had not complete PP
+
+## Tidy PP data for mixed linear model
+PP_osweb_tidy <- PP_osweb %>% inner_join(
+(select(SP_V_subj_osweb, Language, PSA_ID, subject_nr) ),
+by=c("Language","PSA_ID","subject_nr")
+) %>% 
+  distinct() %>%
+  bind_cols(Source = "osweb") ## mark for separated analysis
+
+## Summarize the valid participants' PP verification data
+PP_subj_osweb <- PP_osweb_tidy %>%
+#    group_by(subject_nr) %>%
+#    mutate(acc = n()/24) %>%
+#    filter(acc > .7) %>%
+    mutate(Match = (Orientation1 == Orientation2)) %>%
+    group_by(Language, PSA_ID, subject_nr, Match) %>%
+    summarise(P_RT = median(response_time), P_Acc = n()/12) 
+```
+
+
+```{r count_jatos, echo=FALSE, message=FALSE, warning=FALSE}
+sum_osweb <- (SP_V_subj_osweb %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(SP_N = n()/2)) %>%
+left_join(  
+(PP_subj_osweb %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language","PSA_ID")
+) 
+
+sum_osweb %>%
+  flextable() %>%
+  set_header_labels(PSA_ID="Lab ID", SP_N = "SP N", PP_N = "PP N") %>%
+  autofit()
+```
+
+
+Through jatos server, `r sum(sum_osweb$SP_N)` participants finished sentence-picture verification task and passed the preregistered exclusion criterion (accuracy percentile > 70%); `r sum(sum_osweb$PP_N)` participants finished picture-picture verification task. We excluded 1 participant from `USA_033` because this participant did not complete the picture-picture verification.
+
+## Avalability Summary: all data
+
+```{r count_all, echo=FALSE, message=FALSE, warning=FALSE}
+sum_all <- (bind_rows(SP_V_subj_site,SP_V_subj_osweb) %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(SP_N = n()/2)) %>%
+left_join(  
+(bind_rows(PP_subj_site,PP_subj_osweb) %>% 
+  group_by(Language, PSA_ID) %>%
+  summarise(PP_N = n()/2)),
+by=c("Language","PSA_ID")
+) 
+
+sum_all %>%
+  flextable() %>%
+  set_header_labels(PSA_ID="Lab ID", SP_N = "SP N", PP_N = "PP N") %>%
+  autofit()
+```
+
+According to our preregistered plan, each laboratory has to collect at least 50 participants. Some laboratories did not reach the minimal criterion because of the following reasons: (1)their works were interrupted by the pandemic situation; (2)the participants performed worse through the online study; (3) the laboratories allocated the seats for the foreign participants; (4) A language (e.g., Serbian) has a various of scripts.
+
+
+## Pre-analysis summary
+
+At the end of data collection, there are `r length(unique(SP_V$Language))` languages registered in this project. The collected data were from `r length(grep(unique(SP_V$PSA_ID), pattern = "[0-9]$"))` laboratories and `r sum(sum_site$SP_N,sum_osweb$SP_N)` participants. 
+
+## Descriptive Characteristics of Participants
+
+Participants responded their gender and age in a open-ended questions. We extracted their responses from the Qualtric server of companion study (cite PSA 003). At the first clean cycle, we filtered the data which had the time stamps incompatible with the sentence-picture verification data. The responses of gender and age were translated on google sheet (see [this link](https://docs.google.com/spreadsheets/d/1H8X2rC8XjiF5vXSHnh8wD9Z6cyqe-_mX5e59Hm1_Sm8/edit#gid=1818308364) ). 
+
+# Planned Analysis
+
+```{r preparation, message=FALSE, warning=FALSE, include=FALSE}
+library(lme4)
+library(lmerTest)
+
+if(sum(names(SP_V_site_tidy) == names(SP_V_osweb_tidy)) == dim(SP_V_site_tidy)[2]){
+  SP_V_tidy = bind_rows(SP_V_site_tidy, SP_V_osweb_tidy)
+    chunk_msg01 <- c("All columns in SP_V matched")
+} else {
+  chunk_msg01 <- c("Not all columns in SP_V matched")
+}
+
+if(sum(names(PP_site_tidy) == names(PP_osweb_tidy)) == dim(PP_site_tidy)[2]){
+  PP_tidy = bind_rows(PP_site_tidy, PP_osweb_tidy)
+    chunk_msg02 <- c("All columns in PP matched")
+} else {
+  chunk_msg02 <- c("Not all columns in PP matched")
+}
+
+```
+
+Preprocessing returend: `r paste(chunk_msg01, chunk_msg02)`
+
+## Intra-lab analysis during data collection
+
+According to our preregistered plan, we managed the [progress site](https://scgeeker.github.io/PSA002_log_site/index.html) and accumulated the sequential analysis by team.
+
+## Inter-lab analysis after data collection 
+
+### 1. Identify the outliers in each data set.
+
+```{r one_set_outliers, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+shrinkage_GBR005.lmer = lmer(response_time ~ Match + (1|subject_nr), data = subset(SP_V_tidy,PSA_ID == "GBR_005")) ## build mixed-effects regression
+
+#shrinkage.lmList = lmList(response_time ~ Match|subject_nr, data = subset(SP_V_tidy,PSA_ID == "GBR_005")) ## build random regression
+
+#bind_cols( coef(shrinkage.lmList), coef(shrinkage.lmer)$subject_nr)
+## I could check the intercepts of mixed-effect regression per participant
+#plot(coef(shrinkage.lmList)[,1])
+plot(coef(shrinkage.lmer)$subject_nr[,1])
+
+coef(shrinkage.lmer)$subject_nr %>%  ## Because the original study evaluate RT by median, here I used Q3 to identify the outliers
+  as.tibble()%>%
+  mutate(Outlier = `(Intercept)` > quantile(`(Intercept)`,probs=.75))
+```
+
+> Because the original study evaluate RT by median, here I used Q3 to identify the outliers. By each lab, we summarised how many data beyond this criterion.
+
+
+```{r cycle_outlier_check, echo=TRUE, message=FALSE, warning=FALSE}
+LABS <- unique(SP_V_tidy$PSA_ID)
+
+get_intercept <- function(LAB_ID) {
+  subject_nr = as.factor(subset(SP_V_tidy,PSA_ID == LAB_ID)$subject_nr) %>% levels() %>% as.numeric()
+
+  t <- cbind(subject_nr,
+             (lmer(response_time ~ Match + (1|subject_nr), data = subset(SP_V_tidy,PSA_ID == LAB_ID)) %>%
+  coef())$subject_nr %>%
+      as.tibble()%>%
+  mutate(Outlier = `(Intercept)` > quantile(`(Intercept)`,probs=.75))
+    )
+  
+  return(t)
+}
+
+outliers_table <- NULL
+for(set in LABS){
+  outliers_table<- get_intercept(set) %>%
+    mutate(LAB = set) %>%
+    rbind(outliers_table)
+}
+
+## Summarize outliers by lab
+outliers_table %>%
+  group_by(LAB) %>%
+  summarise(N = sum(Outlier), Prop = round(sum(Outlier)/n(),2) ) %>%
+  rmarkdown::paged_table(options = list(rows.print = 10))
+```
+
+> Two kinds of datasets: No outliers; 1/4 of data were beyond criterion. Because the data were collected in the site then on the internet, we summarised the reaction times and the orientation effect (Mismatch - Match) respectively.
+
+```{r summary_site, echo=TRUE, message=FALSE, warning=FALSE}
+SP_V_tidy %>% left_join(outliers_table, by=c("PSA_ID" = "LAB", "subject_nr" = "subject_nr")) %>%
+  filter(Outlier == FALSE & Source == "site") %>%
+  mutate(Subject = paste0(Source,"_",PSA_ID,"_",subject_nr)) %>%
+  group_by(Language, Subject, Match) %>%
+  summarise(subject_M = median(response_time), subject_ACC = n()/12) %>%
+  group_by(Language, Match) %>%
+  summarise(N = n(), med_RT = median(subject_M), mean_ACC =   mean(subject_ACC)) %>%
+  pivot_wider(names_from = Match, values_from = c(med_RT, mean_ACC)) %>%
+  mutate(Effect = (med_RT_N - med_RT_Y) ) %>%
+  transmute( N=N,
+             Mismatch_stat = paste0(round(med_RT_N),"(",round(mean_ACC_N*100,2),")"),
+             Match_stat = paste0(round(med_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
+             Effect = Effect) %>%
+  flextable() %>% 
+  set_header_labels(Language = "Language", N = "N", Mismatch_stat ="Mismatching", Match_stat = "Matching", Effect = "Orientation Effect")
+```
+
+
+
+```{r summary_osweb, echo=TRUE, fig.cap="Summary of data from osweb."}
+SP_V_tidy %>% left_join(outliers_table, by=c("PSA_ID" = "LAB", "subject_nr" = "subject_nr")) %>%
+  filter(Outlier == FALSE & Source == "osweb") %>%
+mutate(Subject = paste0(Source,"_",PSA_ID,"_",subject_nr)) %>%
+  group_by(Language, Subject, Match) %>%
+  summarise(subject_M = median(response_time), subject_ACC = n()/12) %>%
+  group_by(Language, Match) %>%
+  summarise(N = n(), med_RT = median(subject_M), mean_ACC = mean(subject_ACC)) %>%
+  pivot_wider(names_from = Match, values_from = c(med_RT, mean_ACC)) %>%
+  mutate(Effect = (med_RT_N - med_RT_Y) ) %>%
+  transmute( N=N,
+             Mismatch_stat = paste0(round(med_RT_N),"(",round(mean_ACC_N*100,2),")"),
+             Match_stat = paste0(round(med_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
+             Effect = Effect) %>%
+  flextable() %>% 
+  set_header_labels(Language = "Language", N = "N", Mismatch_stat ="Mismatching", Match_stat = "Matching", Effect = "Orientation Effect")
+```
+
+### 2. Meta analysis of orientation effects across lab
+
+
+Meta analysis method followed Chen et al.(2020) in which they analyzed match advantage and object size. 
+
+
+
+```{r meta_setup, message=FALSE, warning=FALSE, include=FALSE}
+SP_V_meta_data <- SP_V_tidy %>% 
+  left_join(outliers_table, by=c("PSA_ID" = "LAB", "subject_nr" = "subject_nr")) %>%
+  filter(Outlier == FALSE) %>%  ## Reserve the included data in each lab
+  group_by(Language,PSA_ID,subject_nr,Match) %>%
+  summarise(RT = mean(response_time), ACC = 100*(sum(correct)/12)) %>%
+  pivot_wider(
+#    cols = Match:ACC,
+    names_from = Match,
+    values_from = c(RT,ACC)
+  ) %>%
+  group_by(Language,PSA_ID) %>%
+  summarise(m_match=median(RT_Y),m_mismatch=median(RT_N),
+            sd_match=sd(RT_Y),sd_mismatch=sd(RT_N),
+            acc_match=mean(ACC_Y),acc_mismatch=mean(ACC_N),
+            ni=n()) %>%
+  bind_cols(ri=.5)
+head(SP_V_meta_data)
+```
+
+Considering the sample size, we did not include the datasets that are below 25 participants. `r sum(SP_V_meta_data$ni<25)` datasets were excluded from the meta analysis.
+
+
+```{r prereg_meta_all}
+require(metafor)
+
+es_data <- SP_V_meta_data %>%
+  filter((ni > 25)) ## Exclude small sample size
+SP_V_en_es <- escalc(measure = "MC", 
+         m1i = m_mismatch, m2i = m_match, 
+         sd1i = sd_mismatch, sd2i = sd_match, 
+         ni = ni, ri = ri, 
+         slab = PSA_ID, data=es_data)
+SP_V_meta <-  rma.uni(yi, vi, data = SP_V_en_es, slab = PSA_ID, method = "REML", digits = 2)
+
+forest(SP_V_meta, xlab = "Effect size of global results", mlab = "RE model for all datasets")
+```
+
+
+
+```{r prereg_meta_en}
+require(metafor)
+
+es_data <- SP_V_meta_data %>%
+  filter((ni > 25) & Language == "English") ## Exclude small sample size and non-English data set
+SP_V_en_es <- escalc(measure = "MC", 
+         m1i = m_mismatch, m2i = m_match, 
+         sd1i = sd_mismatch, sd2i = sd_match, 
+         ni = ni, ri = ri, 
+         slab = PSA_ID, data=es_data)
+SP_V_en_meta <-  rma.uni(yi, vi, data = SP_V_en_es, slab = PSA_ID, method = "REML", digits = 2)
+
+forest(SP_V_en_meta, xlab = "Effect size of English results", mlab = "RE model for English datasets")
+```
+
+
+
+### 3. Estimate a general orientation effect 
+
+"In the mixed-effect model, we treat the laboratory and language as random effects and the match advantage of object orientations as a fixed effect."
+
+We at first conducted the model with four random effects: participants, targets, laboratories, and languages. We found the targets was 0 because of the counterbalanced design. Therefore we conducted the model excluded the targets from the random effect structure. The analysis showed a weak orientation effect.
+
+```{r general_effect01, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+SP_V_lme_data <- SP_V_tidy %>%
+mutate(Subject = paste0(Source,"_",PSA_ID,"_",subject_nr))
+  
+all_random.lmer = lmer(response_time ~ Match + (1|Subject) + (1|Target) + (1|PSA_ID) + (1|Language), data = SP_V_lme_data) ## build mixed-effects regression
+summary(all_random.lmer)
+
+reduced_random1.lmer = lmer(response_time ~ Match + (1|Subject) + (1|PSA_ID) + (1|Language), data = SP_V_lme_data)
+summary(partial_random1.lmer)
+
+```
+
+Concerned the shift of data collection method, we conducted the mixed-effect model with the fixed effect of data source. The analysis indicated that the responses collected in sites were faster than the responses collected on the website. 
+
+```{r general_effect02, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+reduced_random2.lmer =lmer(response_time ~ Match*Source + (1|Subject) + (1|PSA_ID) + (1|Language), data = SP_V_lme_data)
+summary(reduced_random2.lmer)
+
+```
+
+### 4. Analysis on imagery scores
+
+"... we compute an imagery score by taking the elapsed verification time between the orientation settings of critical object pictures (identical, different)."
+
+```{r compute_is, message=FALSE, warning=FALSE}
+PP_aov_data <- PP_tidy %>% left_join(outliers_table, by=c("PSA_ID" = "LAB", "subject_nr" = "subject_nr")) %>%  ## filter the outliers by SP_V data
+  filter(Outlier == FALSE) %>%
+mutate(Subject = paste0(Source,"_",PSA_ID,"_",subject_nr)) %>%
+  group_by(Source, Language, PSA_ID, Subject, Identical) %>%
+  summarise(subject_M = median(response_time), subject_ACC = n()/12) 
+
+PP_aov_data %>% group_by(Language, Identical) %>%
+  summarise(N = n(), med_RT = median(subject_M), mean_ACC = mean(subject_ACC)) %>%
+  pivot_wider(names_from = Identical, values_from = c(med_RT, mean_ACC)) %>%
+  mutate(Imagery = (med_RT_N - med_RT_Y) ) %>%
+  transmute( N=N,
+             Mismatch_stat = paste0(round(med_RT_N),"(",round(mean_ACC_N*100,2),")"),
+             Match_stat = paste0(round(med_RT_Y),"(",round(mean_ACC_Y*100,2),")"),
+             Imagery = Imagery) %>%
+  flextable() %>% 
+  set_header_labels(Language = "Language", N = "N", Mismatch_stat ="Different", Match_stat = "Identical", Effect = "Imagery Score")
+```
+
+We conducted the ANOVA on the interaction of source and imagery score. The analysis indicated no interaction although the responses collected from the website were longer than the responses collected in the sites.
+
+```{r PP_source, message=FALSE, warning=FALSE}
+require(afex)
+PP.0.aov <- aov_car(subject_M ~ Identical*Source + Error(Subject/Identical), data = PP_aov_data)
+
+knitr::kable(nice(PP.0.aov))
+```
+
+
+
+"The first step compares the imagery scores among the languages and the laboratories with the analysis of variance. The results will indicate the generalizability of mental rotation among languages." 
+
+
+The ANOVA of languages and imagery scores indicated the interaction which means the imagery scores were higher in some langauges.
+
+```{r PP_lang, message=FALSE, warning=FALSE}
+require(afex)
+PP.1.aov <- aov_car(subject_M ~ Identical*Language + Error(Subject/Identical), data = PP_aov_data)
+
+knitr::kable(nice(PP.1.aov))
+```
+
+
+Because English data collected from `r length(unique(subset(PP_aov_data, Language == "English")$PSA_ID))` sites, we conducted the ANOVA of sites and imagery scores. The analysis indicated the interaction which means the higher imagery scores were higher in some teams.
+
+
+```{r PP_Eng, message=FALSE, warning=FALSE}
+require(afex)
+PP.EN.aov <- aov_car(subject_M ~ Identical*PSA_ID + Error(Subject/Identical), data = subset(PP_aov_data, Language == "English"))
+
+knitr::kable(nice(PP.EN.aov))
+```
+
+
+
+```{r PP_TC, message=FALSE, warning=FALSE}
+require(afex)
+PP.TC.aov <- aov_car(subject_M ~ Identical*PSA_ID + Error(Subject/Identical), data = subset(PP_aov_data, Language == "Traditional Chinese"))
+
+knitr::kable(nice(PP.TC.aov))
+```
+
+"In the second step, the imagery scores and languages will be the predictor in the regression model that uses the match advantage as the dependent variable. This regression model will be the prediction model for the match advantage of object orientation in future studies."
+
+
+
+
+<!---
+In the lastest time we rendered this article, there were  available data. The codes for cleaning the data are in `3_1c_retrieve_postsurvey.R`.  
+
+Furthter cycles are in progress. Codes in `3_1d_processing_postsurvey.R` is under construction. 
+
+
+
+(The descriptive stat about the online data)
+
+## Preview object orientation effects
+
+Since the original study [@stanfield_effect_2001], researchers evaluated the orientation effect by comparing the medians of matching and mismatching response times. Later studies argued the alternative conclusions based on the orientation effect by comparing the means [@kosterMentalSimulationObject2018; @rommersObjectShapeOrientation2013]. Therefore the summarized effects included the effects by medians and by means.
+
+```{r SP_lang_lab_table, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+SP_V_all_tidy <- bind_rows(SP_V_site_tidy, SP_V_osweb_tidy)
+
+
+## Summary: median reaction time
+SP_V_all_tidy %>% 
+  group_by(Language, PSA_ID, Match, subject_nr)%>%
+  summarise(V_RT = median(response_time), V_Acc = n()/12) %>%
+  group_by(PSA_ID, Match) %>%
+  summarise(N=n(), RT_Mid = median(V_RT), RT_Mean = mean(V_RT), RT_sd = sd(V_RT), Acc = mean(V_Acc)) %>%
+  unite("stat",N:Acc,) %>%
+  spread(key = Match, value = stat) %>%
+  separate(N, c("N","RT_Mid_mismatch","RT_Mean_mismatch","RT_sd_mismatch","Acc_mismatch"),sep="_") %>%
+  separate(Y, c("N","RT_Mid_match","RT_Mean_match","RT_sd_match","Acc_match"),sep="_") %>%
+  type.convert() %>%
+  mutate(Effect_Mid = round(RT_Mid_mismatch - RT_Mid_match,2)) %>%
+  mutate(Effect_Mean = round(RT_Mean_mismatch - RT_Mean_match,2)) %>%
+  mutate(Effect_Acc = round(Acc_mismatch - Acc_match,2)) %>%
+  flextable() %>%
+  autofit()
+```
+
+Effects evaluated by medians tended to positive but effects evluated by means tended to nagative. English labratories and Indo-European languages had the small and negative orientation effect. English labratories that collected bilingual participants (MYS_003, MYS_004) showed negative effects. Some Asian langauges (Chinese, Thai) showed positive orientation effects 
+
+```{r PP_table, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+PP[,1:5] %>%
+  flextable() %>%
+  autofit()
+```
+
+Some labratories provided less participants of piciture-picture verification than those of sentence-picture verification. These labratories had coded wrong participatn ID when they conducted the picture-picture verification.
+
+```{r M_table, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+SP_M %>%
+  mutate(Percentile = round(Acc*100,2)) %>%
+  select(PSA_ID, Percentile) %>%
+  flextable() %>%
+  autofit()
+```
+
+Averaged accuracy of memory trials are between `r round(min(SP_M$Acc)*100,2)` and `r round(max(SP_M$Acc)*100,2)`. We may consider if memory accuracy moderated the differences among languages and labratories.
+
+--->
+
+### Reference
+
