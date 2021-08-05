@@ -21,6 +21,8 @@ navbar:
           href: intro.html
         - text: "Plan"
           href: prereg.html
+        - text: "Report"
+          href: report.html
     - text: "Dataset"
       menu:
         - text: "Codebook"
