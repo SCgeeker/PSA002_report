@@ -1,7 +1,7 @@
 ---
 title: "Orientnation Effects: Global investigations"
 description: |
- PSA 002 meta: Investigating Object Orientation Effects beyond 19 Languages.
+ PSA 002 meta: Investigating Object Orientation Effects beyond 18 Languages.
 date: "`r Sys.Date()`"
 author:
   - name: Sau-Chin Chen 

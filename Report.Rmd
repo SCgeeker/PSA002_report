@@ -4,6 +4,6 @@ description: |
   Check the final report.
 ---
 
-- 20210805 note: final report is under writing. The file will be updated anytime.
+- 20210909 note: Final report had been submitted to Psychonomic Bulletin & Review. 
 
 <embed src="includes/files/Stage2_Report.pdf#toolbar=0&navpanes=1&scrollbar=0" type="application/pdf" width="100%" height="600px">

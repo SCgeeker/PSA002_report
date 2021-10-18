@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -85,30 +86,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Orientnation Effects: Global investigations: Planned Analysis</title>
+  <title>Orientnation Effects: Global investigations: Beyond Replications</title>
 
-  <meta property="description" itemprop="description" content="Example analysis on English data from 10 teams."/>
+  <meta property="description" itemprop="description" content="Brief the analysis plan and the extended analysis."/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Orientnation Effects: Global investigations: Planned Analysis"/>
+  <meta property="og:title" content="Orientnation Effects: Global investigations: Beyond Replications"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Example analysis on English data from 10 teams."/>
+  <meta property="og:description" content="Brief the analysis plan and the extended analysis."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Orientnation Effects: Global investigations"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Orientnation Effects: Global investigations: Planned Analysis"/>
-  <meta property="twitter:description" content="Example analysis on English data from 10 teams."/>
+  <meta property="twitter:title" content="Orientnation Effects: Global investigations: Beyond Replications"/>
+  <meta property="twitter:description" content="Brief the analysis plan and the extended analysis."/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Estimating power in (generalized) linear mixed models: An open introduction and tutorial in R;citation_publication_date=2021;citation_doi=10.3758/s13428-021-01546-0;citation_issn=1554-3528;citation_author=Leah Kumle;citation_author=Melissa L.-H. VÃµ;citation_author=Dejan Draschkow"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Planned Analysis"]},{"type":"character","attributes":{},"value":["Example analysis on English data from 10 teams.\n"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Beyond Replications"]},{"type":"character","attributes":{},"value":["Brief the analysis plan and the extended analysis.\n"]},{"type":"character","attributes":{},"value":["./includes/bib/Orientation Cross Languages.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2086,7 +2089,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2134,7 +2137,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Planned Analysis","description":"Example analysis on English data from 10 teams.","authors":[]}
+{"title":"Beyond Replications","description":"Brief the analysis plan and the extended analysis.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2211,29 +2214,27 @@ Replication Plan
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Planned Analysis</h1>
+<h1>Beyond Replications</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Example analysis on English data from 10 teams.</p></p>
+<p><p>Brief the analysis plan and the extended analysis.</p></p>
 </div>
 
 
 <div class="d-article">
-<p>(The analysis is under management. We will update this page at any time.)</p>
-<p>According to the <a href="prereg.html">preregistered plan</a>, we conducted the intra-lab and inter-lab analysis as the below arrangements.</p>
-<h2 id="intra-lab-analysis-during-data-collection">Intra-lab analysis during data collection</h2>
-<p>We managed the <a href="https://scgeeker.github.io/PSA002_log_site/index.html">progress site</a> and accumulated the sequential analysis by team.</p>
-<h2 id="inter-lab-analysis-after-data-collection">Inter-lab analysis after data collection</h2>
-<ol type="1">
-<li><p>Identify the outliers in each data set.</p></li>
-<li><p>Meta analysis of orientation effects across lab</p></li>
-<li><p>Estimate a general orientation effect</p></li>
-</ol>
-<p>“In the mixed-effect model, we treat the laboratory and language as random effects and the match advantage of object orientations as a fixed effect.”</p>
-<ol start="4" type="1">
-<li>Analysis on imagery scores</li>
-</ol>
+<p>Our original plan used mixed-effect model <span class="citation" data-cites="baayen_mixed-effects_2008 batesParsimoniousMixedModels2015">(<a href="#ref-baayen_mixed-effects_2008" role="doc-biblioref">Baayen, Davidson, and Bates 2008</a> ; <a href="#ref-batesParsimoniousMixedModels2015" role="doc-biblioref">Bates et al. 2015</a>)</span> evaluate the orientation effects and the interaction with languages. Because about 1/3 teams collected data on line, our final analysis plan additionally processed the shift of orientation effects along with the experimental circumstances (in site vs. on line). In this site we reproduced the data analysis based on the partial data. In the sub-pages under this title, we collect the reproducible plans for the researchers who have the interest and resource to conduct the study. A plan managed some extended hypotheses and the simulation-based power analysis. We appreciated <a href="https://lkumle.github.io/power_notebooks/"><code>mixedpower</code></a> being the tool to design the study <span class="citation" data-cites="kumleEstimatingPowerGeneralized2021">(<a href="#ref-kumleEstimatingPowerGeneralized2021" role="doc-biblioref">Kumle, Võ, and Draschkow 2021</a>)</span>. We welcome researchers provide your comments and ideas in the site <a href="/posts.html">posts</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-baayen_mixed-effects_2008" class="csl-entry" role="doc-biblioentry">
+Baayen, R. Harald, D. J. Davidson, and D. M. Bates. 2008. <span>“Mixed-Effects Modeling with Crossed Random Effects for Subjects and Items.”</span> <em>Journal of Memory and Language</em> 59 (4): 390–412. <a href="https://doi.org/10.1016/j.jml.2007.12.005">https://doi.org/10.1016/j.jml.2007.12.005</a>.
+</div>
+<div id="ref-batesParsimoniousMixedModels2015" class="csl-entry" role="doc-biblioentry">
+Bates, Douglas, Reinhold Kliegl, Shravan Vasishth, and Harald Baayen. 2015. <span>“Parsimonious <span>Mixed Models</span>.”</span> 2015. <a href="http://arxiv.org/abs/1506.04967">http://arxiv.org/abs/1506.04967</a>.
+</div>
+<div id="ref-kumleEstimatingPowerGeneralized2021" class="csl-entry" role="doc-biblioentry">
+Kumle, Leah, Melissa L.-H. Võ, and Dejan Draschkow. 2021. <span>“Estimating Power in (Generalized) Linear Mixed Models: An Open Introduction and Tutorial in <span>R</span>.”</span> <em>Behavior Research Methods</em>, May. <a href="https://doi.org/10.3758/s13428-021-01546-0">https://doi.org/10.3758/s13428-021-01546-0</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2246,6 +2247,8 @@ Replication Plan
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
 <h3 id="updates-and-corrections">Corrections</h3>
 <p>If you see mistakes or want to suggest changes, please <a href="https://github.com/SCgeeker/PSA002_report/issues/new">create an issue</a> on the source repository.</p>
 <h3 id="reuse">Reuse</h3>

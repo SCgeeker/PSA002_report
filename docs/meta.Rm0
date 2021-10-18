@@ -1,8 +1,0 @@
----
-title: "Meta project"
-description: |
-  Posts.
-#date: "`r Sys.Date()`"
-#theme: theme.css
-site: distill::distill_website
----
