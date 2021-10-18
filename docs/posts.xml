@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Orientnation Effects: Global investigations</title>
+    <link>https://SCgeeker.github.io/PSA002_report/</link>
+    <atom:link href="https://SCgeeker.github.io/PSA002_report/posts.xml" rel="self" type="application/rss+xml"/>
+    <description>PSA 002 Open report: "Investigating Object Orientation Effects Across 19 Languages"
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Meta Project of Orientation Effects</title>
+      <dc:creator>Sau-Chin Chen</dc:creator>
+      <link>https://SCgeeker.github.io/PSA002_report/posts/2021-06-17-meta-project-of-orientation-effects</link>
+      <description>We are collecting the ideas and plans to replicate and explore the orientation effects.</description>
+      <guid>https://SCgeeker.github.io/PSA002_report/posts/2021-06-17-meta-project-of-orientation-effects</guid>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
